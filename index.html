@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- これはレスポンシブデザインを適切に表示するためのメタタグです -->
-    <title>私のポートフォリオ</title>
+    <title>Tomohiro Ogawa</title>
     <link rel="stylesheet" href="css\styles.css"> <!-- これでcss\styles.cssをこのHTMLファイルにリンクしています -->
 </head>
 	
@@ -15,6 +15,12 @@
 				<a href="about.html">ABOUT</a>
 				<a href="contact.html">CONTACT</a>
 			</div>
+			<div class="hamburger-menu">
+				<div class="bar"></div>
+				<div class="bar"></div>
+				<div class="bar"></div>
+				<div class="close-icon">✕</div> <!-- この行を追加 -->
+			</div>			
         </header>
         <main>
             <div class="thumbnail-container">
@@ -43,6 +49,12 @@
 			</div>
 		</footer>
     </div>
+	<div class="overlay">
+		<div class="nav-buttons">
+			<a href="about.html">ABOUT</a>
+			<a href="contact.html">CONTACT</a>
+		</div>
+	</div>
+	<script src="js/scripts.js"></script>
 </body>
-
 </html>
