@@ -177,12 +177,14 @@ footer {
     header h1 {
         margin: 0;
         margin-bottom: 10px; /* タイトルとナビゲーションボタンの間のマージンを10pxに設定 */
+        padding-left: 20px;
     }
 
     header .nav-buttons {
         position: static; /* 位置をstaticに戻す */
         justify-content: center; /* ボタンを中央揃えにする */
         gap: 5px; /* ボタン間のギャップを5pxに設定 */
+        padding-right: 20px;
     }
 
     .content-area {
