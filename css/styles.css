@@ -156,16 +156,26 @@ footer {
     line-height: 210px; /* フッターの高さと同じにすることで、テキストを垂直方向に中央揃えにします */
 }
 
-/* 画面幅が768px以下のデバイスに適用するスタイル */
-@media (max-width: 768px) {
+/* 画面幅が600px以下のデバイスに適用するスタイル */
+@media (max-width: 600px) {
+    .thumbnail-container {
+        grid-template-columns: repeat(1, 1fr); /* 1列のグリッドを作成 */
+    }
+
     header {
-        height: 100px; /* ヘッダーの高さを小さく調整 */
+        flex-direction: column; /* ヘッダーの要素を縦に並べる */
+        height: auto; /* 高さを自動に設定 */
+        padding: 20px 0; /* パディングを上下に20px、左右に0に設定 */
     }
-	main {
-        margin: 80px auto; /* 上下の隙間を80pxに変更 */
+
+    header h1 {
+        margin: 0;
+        margin-bottom: 10px; /* タイトルとナビゲーションボタンの間のマージンを10pxに設定 */
     }
-    footer {
-        height: 150px; /* フッターの高さを小さく調整 */
-		margin-top: 20px;
+
+    header .nav-buttons {
+        position: static; /* 位置をstaticに戻す */
+        justify-content: center; /* ボタンを中央揃えにする */
+        gap: 5px; /* ボタン間のギャップを5pxに設定 */
     }
 }
