@@ -82,7 +82,7 @@ main {
 }
 
 .thumbnail {
-    width: 352px; /* サムネイルの幅を設定 */
+    width: 340px; /* サムネイルの幅を設定 */
     height: auto;
     text-align: center; /* キャプションを中央揃えにする */
     padding-left: 15px; /* 左のpaddingを15pxに設定 */
@@ -98,7 +98,6 @@ main {
 
 .thumbnail img {
     width: 100%; /* 画像の幅をサムネイルの幅に合わせる */
-    height: 220px; /* 画像の高さを指定 */
     object-fit: cover; /* 画像のアスペクト比を維持しつつ、指定したサイズに合わせる */
 }
 
@@ -135,6 +134,13 @@ main {
     top: 0;
     line-height: 2;
     margin-top: 40px; /* 説明文の上部との間隔を取るためのマージンです */
+}
+
+.content-area p a {
+    color: inherit; /* 親要素の色を継承 */
+    text-decoration: none; /* アンダーラインを削除 */
+    display: inline-block; /* インラインブロックとして表示 */
+    transition: color 0.3s; /* 色の変更を滑らかにする */
 }
 
 /* フッターのスタイル */
