@@ -143,6 +143,12 @@ main {
     transition: color 0.3s; /* 色の変更を滑らかにする */
 }
 
+.content-area img {
+    width: 100%; /* 画像の幅をコンテナの幅に合わせる */
+    height: auto; /* 高さは自動 */
+    max-width: 855px; /* 元の幅を超えないようにする */
+}
+
 /* フッターのスタイル */
 footer {
     height: 210px;
@@ -177,5 +183,17 @@ footer {
         position: static; /* 位置をstaticに戻す */
         justify-content: center; /* ボタンを中央揃えにする */
         gap: 5px; /* ボタン間のギャップを5pxに設定 */
+    }
+
+    .content-area {
+        padding: 0 20px; /* 左右に20pxのパディングを追加して、コンテンツが端にくっつかないようにします */
+    }
+
+    .content-area img {
+        max-width: 100%; /* 画像がコンテナの幅を超えないように */
+    }
+
+    .content-area h2, .content-area p {
+        margin-top: 20px; /* 上のマージンを20pxに変更 */
     }
 }
