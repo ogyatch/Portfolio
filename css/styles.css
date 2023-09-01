@@ -73,17 +73,12 @@ header .nav-buttons a:hover {
     color: #666; /* ホバー時の色を少し暗くします（お好みで変更可） */
 }
 
-.hamburger-menu {
-    display: none; /* まずはデフォルトで非表示にします */
-    flex-direction: column; /* 縦に並べます */
-    gap: 5px; /* バー同士の隙間を作ります */
-    cursor: pointer; /* ポインターをクリック可能な見た目にします */
+.hamburger-menu i {
+    padding-right: 20px;
 }
 
-.bar {
-    background-color: black;
-    height: 3px;
-    width: 25px;
+.hamburger-menu .fa-bars, .hamburger-menu .fa-times {
+    display: none;  /* デフォルトでは非表示にします */
 }
 
 /* メインコンテンツのスタイル */
@@ -194,17 +189,21 @@ footer {
         padding-left: 20px;
     }
 
+    header .nav-buttons {
+        display: none; /* 通常のナビゲーションメニューを非表示にします */
+    }
+
     .overlay {
         position: fixed;
         top: 0;
         left: 0;
         width: 100vw;
         height: 100vh;
-        background-color: rgba(255, 255, 255, 0.8);
+        background-color: rgba(0, 0, 0, 0.5); /* 半透明のシェード */
         display: none;
         align-items: center;
         justify-content: center;
-        z-index: 1000; /* 他の要素より前面に表示するためのz-index */
+        z-index: 1000;
     }
 
     .overlay .nav-buttons {
@@ -213,14 +212,21 @@ footer {
         gap: 20px;
     }
 
-    .hamburger-menu {
-        display: flex;
-        margin-left: 20px;  /* h1との間隔を取るためのマージン */
-        padding-right: 20px;  /* ハンバーガーメニューの右側に20pxのパディングを追加 */
+    .hamburger-menu .fa-bars {
+        display: inline-block; /* ハンバーガーアイコンを表示します */
     }
 
+    .overlay.active .nav-buttons {
+        display: flex; /* オーバーレイがアクティブのときにナビゲーションメニューを表示します */
+    }
+
+    .hamburger-menu i {
+        font-size: 24px; /* アイコンのサイズを24pxに設定 */
+        color: #000; /* アイコンの色を黒に設定 */
+    }
+    
     .hamburger-menu .close-icon {
-        display: none;
+        display: none; /* 閉じるアイコンはデフォルトで非表示にします */
     }
 
     header .nav-buttons {

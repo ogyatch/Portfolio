@@ -5,25 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- これはレスポンシブデザインを適切に表示するためのメタタグです -->
     <title>Tomohiro Ogawa</title>
     <link rel="stylesheet" href="css\styles.css"> <!-- これでcss\styles.cssをこのHTMLファイルにリンクしています -->
-</head>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+	<script src="js/scripts.js"></script>
 	
-	<body>
-    <div class="page-container">
-        <header>
+</head>vscode-file://vscode-app/c:/Users/tmhrgw/AppData/Local/Programs/Microsoft%20VS%20Code/resources/app/out/vs/code/electron-sandbox/workbench/workbench.html
+<body>
+	<div class="page-container">
+		<header>
 			<h1><a href="index.html">TOMOHIRO OGAWA</a></h1>
 			<div class="nav-buttons">
 				<a href="about.html">ABOUT</a>
 				<a href="contact.html">CONTACT</a>
 			</div>
 			<div class="hamburger-menu">
-				<div class="bar"></div>
-				<div class="bar"></div>
-				<div class="bar"></div>
-				<div class="close-icon">✕</div> <!-- この行を追加 -->
-			</div>			
-        </header>
-        <main>
-            <div class="thumbnail-container">
+				<i class="fa-solid fa-bars"></i> <!-- ハンバーガーアイコン -->
+				<i class="fa-solid fa-times close-icon"></i> <!-- 閉じるアイコン -->
+			</div>		
+		</header>
+		<div class="overlay">
+			<div class="nav-buttons">
+				<a href="about.html">ABOUT</a>
+				<a href="contact.html">CONTACT</a>
+			</div>
+		</div>	
+		<main>
+			<div class="thumbnail-container">
 				<!--
 				<div class="thumbnail">
 					<img src="img\social_login_btn_thumb.jpg" alt="ソーシャルログインボタン">
@@ -42,19 +48,14 @@
 					</div>
 				</div>
 			</div>
-        </main>
-        <footer>
+		</main>
+		<footer>
 			<div class="footer-content">
 				© 2023 TOMOHIRO OGAWA
 			</div>
 		</footer>
-    </div>
-	<div class="overlay">
-		<div class="nav-buttons">
-			<a href="about.html">ABOUT</a>
-			<a href="contact.html">CONTACT</a>
-		</div>
 	</div>
-	<script src="js/scripts.js"></script>
+	
+	
 </body>
 </html>

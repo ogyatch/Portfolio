@@ -1,17 +1,31 @@
 const hamburgerMenu = document.querySelector('.hamburger-menu');
 const overlay = document.querySelector('.overlay');
-const navButtons = overlay.querySelector('.nav-buttons');
+const navButtons = overlay ? overlay.querySelector('.nav-buttons') : null;
+const closeIcon = hamburgerMenu ? hamburgerMenu.querySelector('.fa-times') : null;
+const barsIcon = hamburgerMenu ? hamburgerMenu.querySelector('.fa-bars') : null;
 
-hamburgerMenu.addEventListener('click', function() {
-    if (overlay.style.display === 'flex') {
-        overlay.style.display = 'none';
-        // ハンバーガーアイコンを表示、✕アイコンを非表示
-        hamburgerMenu.querySelector('.bar').style.display = 'block';
-        hamburgerMenu.querySelector('.close-icon').style.display = 'none';
-    } else {
-        overlay.style.display = 'flex';
-        // ✕アイコンを表示、ハンバーガーアイコンを非表示
-        hamburgerMenu.querySelector('.bar').style.display = 'none';
-        hamburgerMenu.querySelector('.close-icon').style.display = 'block';
-    }
-});
+if (barsIcon) {
+    // ハンバーガーアイコンがクリックされたときの動作
+    barsIcon.addEventListener('click', function() {
+        if (overlay) {
+            overlay.style.display = 'flex';
+        }
+        this.style.display = 'none'; // ハンバーガーアイコンを非表示
+        if (closeIcon) {
+            closeIcon.style.display = 'block'; // ✕アイコンを表示
+        }
+    }, false);
+}
+
+if (closeIcon) {
+    // 閉じるアイコンがクリックされたときの動作
+    closeIcon.addEventListener('click', function() {
+        if (overlay) {
+            overlay.style.display = 'none';
+        }
+        if (barsIcon) {
+            barsIcon.style.display = 'block'; // ハンバーガーアイコンを表示
+        }
+        this.style.display = 'none'; // ✕アイコンを非表示
+    }, false);
+}
