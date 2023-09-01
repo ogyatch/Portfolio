@@ -34,7 +34,10 @@ header {
 }
 
 header h1 {
-	margin-left: 45px;
+    margin-left: 20px;
+    position: absolute; /* 絶対位置指定を使用してボタンを配置 */
+    left: min(calc((100% - 1000px) / 2), 20px);
+
     max-width: 1110px; /* メインコンテンツと同じ幅を持つようにする */
     width: 100%; /* 画面幅全体を使用 */
     font-size: 16px;
@@ -54,8 +57,9 @@ header h1 a:hover {
 
 /* ヘッダー内のナビゲーションボタンのスタイル */
 header .nav-buttons {
+    margin-right: 20px;
     position: absolute; /* 絶対位置指定を使用してボタンを配置 */
-    right: calc((100% - 1100px) / 2); /* サムネイルの右端と揃えるための計算 */
+    right: min(calc((100% - 1100px) / 2), 20px); /* サムネイルの右端と揃えるための計算に加えて、20pxのマージンを追加 */
     display: flex; /* ボタンを横に並べます */
     gap: 10px; /* ボタン間のスペース */
 }
@@ -73,7 +77,7 @@ header .nav-buttons a:hover {
     color: #666; /* ホバー時の色を少し暗くします（お好みで変更可） */
 }
 
-/* メインコンテンツのスタイル */
+/* index.htmlのメインコンテンツのスタイル */
 main {
 	flex-grow: 1;
 	margin: 40px auto;
@@ -94,6 +98,7 @@ main {
     display: grid; /* グリッドレイアウトを使用 */
     grid-template-columns: repeat(3, 1fr); /* 3列のグリッドを作成 */
     gap: 20px; /* サムネイル間のスペース */
+    margin: auto 20px;
 }
 
 .thumbnail img {
@@ -118,9 +123,10 @@ main {
     display: block; /* 新しい行に表示する */
 }
 
+/* (Project Name).htmlのメインコンテンツのスタイル */
 .content-area {
     max-width: 855px;
-    margin: 0 auto; /* これにより、content-areaが中央に配置されます */
+    margin: 0 20px; /* これにより、content-areaが中央に配置されます */
 }
 
 .content-area h2 {
@@ -174,8 +180,10 @@ footer {
     }
 
     header h1 {
+        position: static; /* 位置指定をリセット */
+        z-index: 10; /* 必要に応じてz-indexを増やす */
         margin: 0;
-        margin-bottom: 10px; /* タイトルとナビゲーションボタンの間のマージンを10pxに設定 */
+        margin-bottom: 10px;
         padding-left: 20px;
     }
 
