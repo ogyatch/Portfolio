@@ -73,14 +73,6 @@ header .nav-buttons a:hover {
     color: #666; /* ホバー時の色を少し暗くします（お好みで変更可） */
 }
 
-.hamburger-menu i {
-    padding-right: 20px;
-}
-
-.hamburger-menu .fa-bars, .hamburger-menu .fa-times {
-    display: none;  /* デフォルトでは非表示にします */
-}
-
 /* メインコンテンツのスタイル */
 main {
 	flex-grow: 1;
@@ -173,79 +165,37 @@ footer {
 /* 画面幅が600px以下のデバイスに適用するスタイル */
 @media (max-width: 600px) {
     .thumbnail-container {
-        grid-template-columns: repeat(1, 1fr);
+        grid-template-columns: repeat(1, 1fr); /* 1列のグリッドを作成 */
     }
 
     header {
-        flex-direction: row;
-        align-items: center;
-        height: auto;
-        padding: 20px 0;
+        flex-direction: column; /* ヘッダーの要素を縦に並べる */
+        height: auto; /* 高さを自動に設定 */
+        padding: 20px 0; /* パディングを上下に20px、左右に0に設定 */
     }
 
     header h1 {
         margin: 0;
-        margin-right: auto; /* 左側に自動のマージンを設定して、h1を左寄せにします */
+        margin-bottom: 10px; /* タイトルとナビゲーションボタンの間のマージンを10pxに設定 */
         padding-left: 20px;
     }
 
     header .nav-buttons {
-        display: none; /* 通常のナビゲーションメニューを非表示にします */
-    }
-
-    .overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        background-color: rgba(0, 0, 0, 0.5); /* 半透明のシェード */
-        display: none;
-        align-items: center;
-        justify-content: center;
-        z-index: 1000;
-    }
-
-    .overlay .nav-buttons {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-    }
-
-    .hamburger-menu .fa-bars {
-        display: inline-block; /* ハンバーガーアイコンを表示します */
-    }
-
-    .overlay.active .nav-buttons {
-        display: flex; /* オーバーレイがアクティブのときにナビゲーションメニューを表示します */
-    }
-
-    .hamburger-menu i {
-        font-size: 24px; /* アイコンのサイズを24pxに設定 */
-        color: #000; /* アイコンの色を黒に設定 */
-    }
-    
-    .hamburger-menu .close-icon {
-        display: none; /* 閉じるアイコンはデフォルトで非表示にします */
-    }
-
-    header .nav-buttons {
-        display: none;
-        position: static;
-        justify-content: center;
-        gap: 5px;
+        position: static; /* 位置をstaticに戻す */
+        justify-content: center; /* ボタンを中央揃えにする */
+        gap: 5px; /* ボタン間のギャップを5pxに設定 */
         padding-right: 20px;
     }
 
     .content-area {
-        padding: 0 20px;
+        padding: 0 20px; /* 左右に20pxのパディングを追加して、コンテンツが端にくっつかないようにします */
     }
 
     .content-area img {
-        max-width: 100%;
+        max-width: 100%; /* 画像がコンテナの幅を超えないように */
     }
 
     .content-area h2, .content-area p {
-        margin-top: 20px;
+        margin-top: 20px; /* 上のマージンを20pxに変更 */
     }
 }
