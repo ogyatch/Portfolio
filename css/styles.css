@@ -118,7 +118,6 @@ main {
     display: block; /* 新しい行に表示する */
 }
 
-/* 追加するCSS */
 .content-area {
     max-width: 855px;
     margin: 0 auto; /* これにより、content-areaが中央に配置されます */
