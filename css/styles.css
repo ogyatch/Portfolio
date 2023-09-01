@@ -69,7 +69,6 @@ header .nav-buttons a {
     padding-top: 8px;
     padding-bottom: 8px;
     padding-left: 16px;
-
     text-decoration: none; /* アンダーラインを削除 */
     color: black; /* テキストの色を黒に設定 */
     transition: background-color 0.3s; /* 背景色の変更を滑らかにする */
@@ -137,6 +136,12 @@ main {
     margin-bottom: 40px; /* 説明文の上部との間隔を取るためのマージンです */
 }
 
+.content-area h3 {
+	font-size: 24px;
+    font-weight: 400;
+    margin-top: 80px;
+}
+
 .content-area p {
 	font-size: 18px;
     top: 0;
@@ -144,11 +149,17 @@ main {
     margin-top: 40px; /* 説明文の上部との間隔を取るためのマージンです */
 }
 
-.content-area p a {
-    color: inherit; /* 親要素の色を継承 */
+.content-area a {
     text-decoration: none; /* アンダーラインを削除 */
-    display: inline-block; /* インラインブロックとして表示 */
-    transition: color 0.3s; /* 色の変更を滑らかにする */
+}
+
+.content-area a p {
+    color: black; /* テキストの色を黒に設定 */
+    transition: background-color 0.3s; /* 背景色の変更を滑らかにする */
+}
+
+.content-area a:hover p {
+    color: #666; /* ホバー時の色を少し暗くします（お好みで変更可） */
 }
 
 .content-area img {
@@ -171,7 +182,7 @@ footer {
 }
 
 /* 画面幅が600px以下のデバイスに適用するスタイル */
-@media (max-width: 600px) {
+@media (max-width: 930px) {
     .thumbnail-container {
         grid-template-columns: repeat(1, 1fr); /* 1列のグリッドを作成 */
     }
@@ -187,14 +198,14 @@ footer {
         z-index: 10; /* 必要に応じてz-indexを増やす */
         margin: 0;
         margin-bottom: 10px;
-        padding-left: 20px;
+        padding-left: 40px;
     }
 
     header .nav-buttons {
         position: static; /* 位置をstaticに戻す */
         justify-content: center; /* ボタンを中央揃えにする */
         gap: 5px; /* ボタン間のギャップを5pxに設定 */
-        padding-right: 20px;
+        padding-right: 40px;
     }
 
     .content-area {
@@ -205,7 +216,10 @@ footer {
         max-width: 100%; /* 画像がコンテナの幅を超えないように */
     }
 
-    .content-area h2, .content-area p {
+    .content-area h2 {
+        margin-bottom: 20px; /* 上のマージンを20pxに変更 */
+    }
+    .content-area p {
         margin-top: 20px; /* 上のマージンを20pxに変更 */
     }
 }
