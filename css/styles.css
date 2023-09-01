@@ -131,6 +131,7 @@ main {
 
 .content-area h2 {
 	font-size: 24px;
+    font-weight: 400;
     margin-bottom: 40px; /* 説明文の上部との間隔を取るためのマージンです */
 }
 
