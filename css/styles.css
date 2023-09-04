@@ -168,8 +168,9 @@ main {
     max-width: 855px; /* 元の幅を超えないようにする */
 }
 
+/* App Store Badgeのスタイル */
 .content-area a img {
-    width: 165px;  /* お好みのサイズに変更できます */
+    width: 150px;  /* お好みのサイズに変更できます */
     margin-top: 40px;
 }
 
