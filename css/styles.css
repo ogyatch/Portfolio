@@ -90,6 +90,7 @@ header .nav-buttons a:hover {
 .hamburger-menu {
     display: none;
     cursor: pointer;
+
 }
 
 /* コンテンツエリアのスタイル */
@@ -274,6 +275,8 @@ footer {
 
     /* ハンバーガーメニューのスタイル */
     .hamburger-menu {
+        z-index: 1001;
+        position: relative;
         display: block;
     }
 
@@ -305,11 +308,12 @@ footer {
         color: white;
         font-size: 2em;
     }
-    
+
     .overlay-links a {
         margin: 15px;
         text-decoration: none;
-        color: inherit;  /* 親要素（.overlay-links）の色を継承 */
+        color: inherit;
+        /* 親要素（.overlay-links）の色を継承 */
     }
 
     .content-area {
