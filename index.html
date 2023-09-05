@@ -6,25 +6,31 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Tomohiro Ogawa</title>
 	<link rel="stylesheet" href="css/styles.css">
-    <script defer src="js/scripts.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script defer src="js/scripts.js"></script>
 </head>
 
 <body>
 	<div class="page-container">
 		<header>
-            <h1><a href="index.html">TOMOHIRO OGAWA</a></h1>
-            <div class="nav-buttons">
-                <a class="desktop-nav" href="about.html">ABOUT</a>
-                <a class="desktop-nav" href="contact.html">CONTACT</a>
-                <div class="hamburger-menu">
-                    <img id="menu-icon" src="img/bars-solid.png" alt="menu">
-                </div>
-            </div>
-        </header>
-        <div class="overlay" id="overlay">
-            <a href="about.html">ABOUT</a>
-            <a href="contact.html">CONTACT</a>
-        </div>
+			<div class="header-container">
+				<h1><a href="index.html">TOMOHIRO OGAWA</a></h1>
+				<div class="nav-buttons">
+					<a class="desktop-nav" href="about.html">ABOUT</a>
+					<a class="desktop-nav" href="contact.html">CONTACT</a>
+					<div class="hamburger-menu" id="hamburger-menu">
+						<img id="menu-icon" src="img/bars-solid.png" alt="menu">
+					</div>
+				</div>
+			</div>
+			<div class="menu-shade" id="menu-shade">
+				<div class="overlay-links">
+					<a href="about.html">ABOUT</a>
+					<a href="contact.html">CONTACT</a>
+				</div>
+			</div>
+			
+		</header>		
 		<main>
 			<div class="thumbnail-container">
 				<div class="thumbnail">
