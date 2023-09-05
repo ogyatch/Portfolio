@@ -188,6 +188,30 @@ footer {
     line-height: 210px; /* フッターの高さと同じにすることで、テキストを垂直方向に中央揃えにします */
 }
 
+.hamburger-menu {
+    display: none;  /* Initially, the hamburger menu is not displayed */
+    cursor: pointer;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 1);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1001;
+}
+
+.overlay a {
+    font-size: 24px;
+    margin: 10px;
+}
+
 /* 画面幅が600px以下のデバイスに適用するスタイル */
 @media (max-width: 930px) {
     .thumbnail-container {
@@ -228,5 +252,18 @@ footer {
     }
     .content-area p {
         margin-top: 20px; /* 上のマージンを20pxに変更 */
+    }
+
+    .desktop-nav {
+        display: none;  /* Hide the existing nav buttons */
+    }
+
+    .hamburger-menu {
+        display: block;  /* Show the hamburger menu */
+    }
+
+    .hamburger-menu img {
+        height: 24px;
+        width: auto;
     }
 }

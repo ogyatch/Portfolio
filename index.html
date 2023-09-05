@@ -1,42 +1,49 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- これはレスポンシブデザインを適切に表示するためのメタタグです -->
-    <title>Tomohiro Ogawa</title>
-    <link rel="stylesheet" href="css\styles.css"> <!-- これでcss\styles.cssをこのHTMLファイルにリンクしています -->
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Tomohiro Ogawa</title>
+	<link rel="stylesheet" href="css/styles.css">
+    <script defer src="js/scripts.js"></script>
 </head>
-	
-	<body>
-    <div class="page-container">
-        <header>
-			<h1><a href="index.html">TOMOHIRO OGAWA</a></h1>
-			<!--
-			<div class="nav-buttons">
-				<a href="about.html">ABOUT</a>
-				<a href="contact.html">CONTACT</a>
-			</div>
-			-->
+
+<body>
+	<div class="page-container">
+		<header>
+            <h1><a href="index.html">TOMOHIRO OGAWA</a></h1>
+            <div class="nav-buttons">
+                <a class="desktop-nav" href="about.html">ABOUT</a>
+                <a class="desktop-nav" href="contact.html">CONTACT</a>
+                <div class="hamburger-menu">
+                    <img id="menu-icon" src="img/bars-solid.png" alt="menu">
+                </div>
+            </div>
         </header>
-        <main>
-            <div class="thumbnail-container">
+        <div class="overlay" id="overlay">
+            <a href="about.html">ABOUT</a>
+            <a href="contact.html">CONTACT</a>
+        </div>
+		<main>
+			<div class="thumbnail-container">
 				<div class="thumbnail">
 					<a href="kenshonote.html">
 						<img src="img\kenshonote_1.png" alt="懸賞ノート">
-					</a>					
+					</a>
 					<div class="thumbnail-caption">
 						<span class="thumbnail-category">Development</span>
 						<span class="thumbnail-title">懸賞ノート</span>
 					</div>
 				</div>
 			</div>
-        </main>
-        <footer>
+		</main>
+		<footer>
 			<div class="footer-content">
 				© 2023 TOMOHIRO OGAWA
 			</div>
 		</footer>
-    </div>
+	</div>
 </body>
 
 </html>
