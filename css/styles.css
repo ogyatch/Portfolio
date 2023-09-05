@@ -93,6 +93,10 @@ header .nav-buttons a:hover {
 
 }
 
+.menu-shade {
+    display: none;
+}
+
 /* コンテンツエリアのスタイル */
 main {
     flex-grow: 1;
@@ -233,7 +237,7 @@ footer {
 }
 
 
-/* 画面幅が600px以下のデバイスに適用するスタイル */
+/* 画面幅が930px以下のデバイスに適用するスタイル */
 @media (max-width: 930px) {
     .thumbnail-container {
         grid-template-columns: repeat(1, 1fr);
