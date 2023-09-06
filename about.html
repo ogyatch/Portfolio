@@ -1,34 +1,47 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- これはレスポンシブデザインを適切に表示するためのメタタグです -->
     <title>ABOUT</title>
     <link rel="stylesheet" href="css\styles.css"> <!-- これでcss\styles.cssをこのHTMLファイルにリンクしています -->
 </head>
-	
-	<body>
+
+<body>
     <div class="page-container">
         <header>
-            <h1><a href="index.html">TOMOHIRO OGAWA</a></h1>
-			<div class="nav-buttons">
-				<a href="about.html">ABOUT</a>
-				<a href="contact.html">CONTACT</a>
-			</div>
+            <div class="header-container">
+                <h1><a href="index.html">TOMOHIRO OGAWA</a></h1>
+                <div class="nav-buttons">
+                    <a class="desktop-nav" href="about.html">ABOUT</a>
+                    <a class="desktop-nav" href="contact.html">CONTACT</a>
+                    <div class="hamburger-menu" id="hamburger-menu">
+                        <img id="menu-icon" src="img/bars-solid.png" alt="menu">
+                    </div>
+                </div>
+            </div>
+            <div class="menu-shade" id="menu-shade">
+                <div class="overlay-links">
+                    <a href="about.html">ABOUT</a>
+                    <a href="contact.html">CONTACT</a>
+                </div>
+            </div>
         </header>
         <main>
-			<div class="content-area">
-				<p>UI/UX Designer</p>
+            <div class="content-area">
+                <p>UI/UX Designer</p>
                 <h2>Tomohiro Ogawa</h2>
                 <!--<img src="img/about.jpg" alt="プロフィール画像">-->
-                <p>デジタルプロダクトのビジュアライズとエクスペリエンス創造にフォーカスしたデザイナーです。WebやスマートフォンのアプリケーションUIを中心としたデジタルプロダクトの制作、およびクリエイティブディレクションを担当しています。</p>
+                <p>デジタルプロダクトのビジュアライズとエクスペリエンス創造にフォーカスしたデザイナーです。WebやスマートフォンのアプリケーションUIを中心としたデジタルプロダクトの制作、およびクリエイティブディレクションを担当しています。
+                </p>
             </div>
         </main>
         <footer>
-			<div class="footer-content">
-				© 2023 TOMOHIRO OGAWA
-			</div>
-		</footer>
+            <div class="footer-content">
+                © 2023 TOMOHIRO OGAWA
+            </div>
+        </footer>
     </div>
 </body>
 
