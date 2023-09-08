@@ -239,6 +239,10 @@ footer {
 
 /* 画面幅が930px以下のデバイスに適用するスタイル */
 @media (max-width: 930px) {
+    main {
+        padding-top: 80px;
+    }
+
     .thumbnail-container {
         grid-template-columns: repeat(1, 1fr);
         /* 1列のグリッドを作成 */
