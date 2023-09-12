@@ -182,22 +182,22 @@ main {
     top: 0;
     line-height: 2;
     margin-top: 40px;
-    /* 説明文の上部との間隔を取るためのマージンです */
+    margin-bottom: 40px;
 }
 
-.content-area a {
+.content-area a, .contact-area a {
     text-decoration: none;
     /* アンダーラインを削除 */
 }
 
-.content-area a p {
+.content-area a, .contact-area a{
     color: black;
     /* テキストの色を黒に設定 */
     transition: background-color 0.3s;
     /* 背景色の変更を滑らかにする */
 }
 
-.content-area a:hover p {
+.content-area a:hover, .contact-area a:hover {
     color: #666;
     /* ホバー時の色を少し暗くします（お好みで変更可） */
 }
