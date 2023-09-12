@@ -158,35 +158,39 @@ main {
 }
 
 /* (Project Name).htmlのメインコンテンツのスタイル */
-.content-area {
+.content-area, .contact-area {
     max-width: 855px;
     margin: 0 20px;
     /* これにより、content-areaが中央に配置されます */
 }
 
-.content-area h2 {
+.content-area h2, .contact-area h2 {
     font-size: 24px;
     font-weight: 400;
     margin-bottom: 40px;
     /* 説明文の上部との間隔を取るためのマージンです */
 }
 
-.content-area h3 {
+.content-area h3, .contact-area h3 {
     font-size: 24px;
     font-weight: 400;
     margin-top: 80px;
 }
 
-.content-area p {
+.content-area p, .contact-area p {
     font-size: 16px;
     top: 0;
     line-height: 2;
     margin-top: 40px;
 }
 
-.content-area a, .contact-area a {
+.content-area a {
     text-decoration: none;
     /* アンダーラインを削除 */
+}
+
+.contact-area a {
+    text-decoration: underline;
 }
 
 .content-area a, .contact-area a{
@@ -323,7 +327,7 @@ footer {
         /* 親要素（.overlay-links）の色を継承 */
     }
 
-    .content-area {
+    .content-area, .contact-area {
         padding: 0 20px;
     }
 
@@ -331,11 +335,11 @@ footer {
         max-width: 100%;
     }
 
-    .content-area h2 {
+    .content-area h2, .contact-area h2 {
         margin-bottom: 20px;
     }
 
-    .content-area p {
+    .content-area p, .contact-area p {
         margin-top: 20px;
     }
 }
