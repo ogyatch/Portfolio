@@ -172,21 +172,20 @@ main {
 }
 
 .content-area h3, .contact-area h3 {
-    font-size: 24px;
+    font-size: 16px;
     font-weight: 400;
-    margin-top: 80px;
+    margin-top: 60px;
 }
 
 .content-area p, .contact-area p {
     font-size: 16px;
     top: 0;
     line-height: 2;
-    margin-top: 40px;
+    margin-top: 8px;
 }
 
 .content-area a {
-    text-decoration: none;
-    /* アンダーラインを削除 */
+    text-decoration: underline;
 }
 
 .contact-area a {
@@ -207,18 +206,16 @@ main {
 
 .content-area img {
     width: 100%;
-    /* 画像の幅をコンテナの幅に合わせる */
     height: auto;
-    /* 高さは自動 */
     max-width: 855px;
-    /* 元の幅を超えないようにする */
+    margin-top: 0px;
+    margin-bottom: 40px;
 }
 
 /* App Store Badgeのスタイル */
 .content-area a img {
     width: 150px;
-    /* お好みのサイズに変更できます */
-    margin-top: 120px;
+    margin-top: 24px;
 }
 
 
@@ -327,19 +324,25 @@ footer {
         /* 親要素（.overlay-links）の色を継承 */
     }
 
+
     .content-area, .contact-area {
         padding: 0 20px;
     }
 
     .content-area img {
         max-width: 100%;
+        margin-top: 24px;
     }
 
     .content-area h2, .contact-area h2 {
         margin-bottom: 20px;
     }
 
+    .content-area h3 {
+        margin-top: 60px;
+    }
+
     .content-area p, .contact-area p {
-        margin-top: 20px;
+        margin-top: 16px;
     }
 }
