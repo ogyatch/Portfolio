@@ -23,47 +23,49 @@ kuromoji.builder({ dicPath: 'dict' }).build((err, newTokenizer) => {
       recognition.interimResults = true;
       recognition.continuous = true;
 
-    recognition.addEventListener('result', function (event) {
-
-      for (let i = event.resultIndex; i < event.results.length; ++i) {
-        if (event.results[i].isFinal) {
-          const transcript = event.results[i][0].transcript.trim();
-          const tokens = tokenizer.tokenize(transcript);
-
-          // 名詞だけを抽出
-          const nouns = tokens.filter(token => token.pos === '名詞').map(token => token.surface_form);
-          allWords.push(...nouns);  // allWordsに新しく認識された名詞を追加
-
-          for (const word of nouns) {
-            wordCounts[word] = (wordCounts[word] || 0) + 1;
+      recognition.addEventListener('result', function (event) {
+        for (let i = event.resultIndex; i < event.results.length; ++i) {
+          if (event.results[i].isFinal) {
+            const transcript = event.results[i][0].transcript.trim();
+            const tokens = tokenizer.tokenize(transcript);
+      
+            // 名詞だけを抽出して頻度をカウント
+            const nouns = tokens.filter(token => token.pos === '名詞').map(token => token.surface_form);
+            allWords.push(...nouns);
+      
+            for (const word of nouns) {
+              wordCounts[word] = (wordCounts[word] || 0) + 1;
+            }
+      
+            // 名詞が2回以上出現した場合にハイライト
+            const highlightedTranscript = tokens.map(token => {
+              if (token.pos === '名詞' && wordCounts[token.surface_form] >= 2) {
+                return `<span class="highlight">${token.surface_form}</span>`;
+              } else {
+                return token.surface_form;
+              }
+            }).join(' ');
+      
+            // HTMLに発話内容を表示
+            document.getElementById('transcript').innerHTML += highlightedTranscript + '<br>';
           }
-
-          // 頻出する名詞にマーカー（黄色の背景）を付ける
-          const highlightedTranscript = nouns.map(word => {
-            return wordCounts[word] >= 2 ? `<span class="highlight">${word}</span>` : word;
-          }).join(' ');
-
-          finalTranscript += ' ' + highlightedTranscript; // 既存のテキストに新しいテキストを追加
         }
-      }
+      });
+      
 
-      document.getElementById('transcript').innerHTML = finalTranscript.trim();  // 更新
-      // displayFrequentWords(wordCounts);  // この関数が何をするのか不明なので、そのままにしています
-    });
-
-    recognition.start();
-  } else {
-    console.error('このブラウザはWeb Speech APIをサポートしていません。');
-  }
+      recognition.start();
+    } else {
+      console.error('このブラウザはWeb Speech APIをサポートしていません。');
+    }
 
     if (!stream) {
-    navigator.mediaDevices.getUserMedia({ audio: true, video: false })
-      .then(handleSuccess)
-      .catch(handleError);
-  } else {
-    handleSuccess(stream);
-  }
-});
+      navigator.mediaDevices.getUserMedia({ audio: true, video: false })
+        .then(handleSuccess)
+        .catch(handleError);
+    } else {
+      handleSuccess(stream);
+    }
+  });
 });
 
 document.getElementById('stop').addEventListener('click', function () {
