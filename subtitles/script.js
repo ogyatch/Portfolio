@@ -2,47 +2,53 @@ let recognition;
 let audioContext;
 let stream;
 let allWords = [];
-let wordCounts = {};  // グローバルスコープで宣言
+let wordCounts = {};
+let tokenizer;
 
-// 頻出する単語を右端に表示する関数
-function displayFrequentWords() {
-  const sortedWords = Object.keys(wordCounts).sort((a, b) => wordCounts[b] - wordCounts[a]);
-  const frequentWordsHtml = sortedWords.map(word => `<div>${word} (${wordCounts[word]})</div>`).join('');
-  document.getElementById('frequentWords').innerHTML = frequentWordsHtml;
-}
+let finalTranscript = ''; // グローバルスコープで定義
 
-document.getElementById('start').addEventListener('click', function () {
-  if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
-    recognition = new webkitSpeechRecognition() || new SpeechRecognition();
-    recognition.lang = 'ja-JP';
-    recognition.interimResults = true;
-    recognition.continuous = true;
+// Kuromojiの初期化
+kuromoji.builder({ dicPath: 'dict' }).build((err, newTokenizer) => {
+  if (err) {
+    console.error('Kuromojiの初期化に失敗:', err);
+    return;
+  }
+  tokenizer = newTokenizer;
+
+  // マイクへのアクセス許可を取得
+  document.getElementById('start').addEventListener('click', function () {
+    if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+      recognition = new webkitSpeechRecognition() || new SpeechRecognition();
+      recognition.lang = 'ja-JP';
+      recognition.interimResults = true;
+      recognition.continuous = true;
 
     recognition.addEventListener('result', function (event) {
-      let currentWords = [];  // この認識セッションでの単語を格納する
 
       for (let i = event.resultIndex; i < event.results.length; ++i) {
         if (event.results[i].isFinal) {
           const transcript = event.results[i][0].transcript.trim();
-          const newWords = transcript.split(' ');
-          currentWords.push(...newWords);
+          const tokens = tokenizer.tokenize(transcript);
+
+          // 名詞だけを抽出
+          const nouns = tokens.filter(token => token.pos === '名詞').map(token => token.surface_form);
+          allWords.push(...nouns);  // allWordsに新しく認識された名詞を追加
+
+          for (const word of nouns) {
+            wordCounts[word] = (wordCounts[word] || 0) + 1;
+          }
+
+          // 頻出する名詞にマーカー（黄色の背景）を付ける
+          const highlightedTranscript = nouns.map(word => {
+            return wordCounts[word] >= 2 ? `<span class="highlight">${word}</span>` : word;
+          }).join(' ');
+
+          finalTranscript += ' ' + highlightedTranscript; // 既存のテキストに新しいテキストを追加
         }
       }
 
-      // 既存の単語リストに新しい単語を追加
-      allWords.push(...currentWords);
-
-      // 単語の出現回数を数える
-      for (const word of currentWords) {
-        wordCounts[word] = (wordCounts[word] || 0) + 1;
-      }
-
-      const highlightedTranscript = allWords.map(word => {
-        return wordCounts[word] >= 2 ? `<span class="highlight">${word}</span>` : word;
-      }).join(' ');
-
-      document.getElementById('transcript').innerHTML = highlightedTranscript;
-      displayFrequentWords();
+      document.getElementById('transcript').innerHTML = finalTranscript.trim();  // 更新
+      // displayFrequentWords(wordCounts);  // この関数が何をするのか不明なので、そのままにしています
     });
 
     recognition.start();
@@ -50,13 +56,14 @@ document.getElementById('start').addEventListener('click', function () {
     console.error('このブラウザはWeb Speech APIをサポートしていません。');
   }
 
-  if (!stream) {
+    if (!stream) {
     navigator.mediaDevices.getUserMedia({ audio: true, video: false })
       .then(handleSuccess)
       .catch(handleError);
   } else {
     handleSuccess(stream);
   }
+});
 });
 
 document.getElementById('stop').addEventListener('click', function () {
