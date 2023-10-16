@@ -1,0 +1,19 @@
+body {
+    /* 画面全体のグラデーション */
+    background: linear-gradient(to right, #12c2e9, #c471ed, #f64f59);
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+  }
+  
+  #transcript {
+    /* フォントサイズ、フォントタイプ、フォントカラーの指定 */
+    font-size: 100px;
+    font-family: 'Noto Serif JP', serif;
+    color: #FFF;
+  }
+  
+  .highlight {
+    background-color: black;
+  }
+  
