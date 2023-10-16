@@ -122,3 +122,21 @@ function handleSuccess(s) {
   }
   render();
 }
+
+// グラデーションの向き（degree）の初期値
+let degree = 0;
+
+// グラデーションの向きを変える関数
+function updateBackground() {
+  // グラデーションの向きを1度ずつ増加させる
+  degree = (degree + 1) % 360;
+
+  // 新しいグラデーションスタイルを計算
+  const newGradient = `linear-gradient(${degree}deg, #12c2e9, #c471ed, #f64f59)`;
+
+  // 背景スタイルを更新
+  document.body.style.background = newGradient;
+}
+
+// 100ミリ秒ごとにグラデーションを更新
+setInterval(updateBackground, 100);
