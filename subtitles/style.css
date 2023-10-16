@@ -12,6 +12,15 @@ body {
     font-family: 'Noto Serif JP', serif;
     color: #FFF;
   }
+
+  #frequentWords {
+    position: fixed;
+    right: 0;
+    top: 0;
+    font-size: 40px;
+    font-family: 'Noto Serif JP', serif;
+    color: #FFF;
+  }  
   
   .highlight {
     background-color: black;

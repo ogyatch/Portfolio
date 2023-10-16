@@ -2,8 +2,15 @@ let recognition;
 let audioContext;
 let stream;
 let allWords = [];
+let wordCounts = {};  // グローバルスコープで宣言
 
-// マイクへのアクセス許可を取得
+// 頻出する単語を右端に表示する関数
+function displayFrequentWords() {
+  const sortedWords = Object.keys(wordCounts).sort((a, b) => wordCounts[b] - wordCounts[a]);
+  const frequentWordsHtml = sortedWords.map(word => `<div>${word} (${wordCounts[word]})</div>`).join('');
+  document.getElementById('frequentWords').innerHTML = frequentWordsHtml;
+}
+
 document.getElementById('start').addEventListener('click', function () {
   if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
     recognition = new webkitSpeechRecognition() || new SpeechRecognition();
@@ -11,28 +18,31 @@ document.getElementById('start').addEventListener('click', function () {
     recognition.interimResults = true;
     recognition.continuous = true;
 
-    // 音声認識が結果を生成したとき
-    recognition.addEventListener('result', function(event) {
+    recognition.addEventListener('result', function (event) {
+      let currentWords = [];  // この認識セッションでの単語を格納する
+
       for (let i = event.resultIndex; i < event.results.length; ++i) {
         if (event.results[i].isFinal) {
           const transcript = event.results[i][0].transcript.trim();
           const newWords = transcript.split(' ');
-          allWords.push(...newWords);
-          
-          // 単語の出現回数を数える
-          const wordCounts = {};
-          for (const word of allWords) {
-            wordCounts[word] = (wordCounts[word] || 0) + 1;
-          }
-    
-          // 2回以上出現した単語にマーカー（黄色の背景）を付ける
-          const highlightedTranscript = allWords.map(word => {
-            return wordCounts[word] >= 2 ? `<span class="highlight">${word}</span>` : word;
-          }).join(' ');
-    
-          document.getElementById('transcript').innerHTML = highlightedTranscript;
+          currentWords.push(...newWords);
         }
       }
+
+      // 既存の単語リストに新しい単語を追加
+      allWords.push(...currentWords);
+
+      // 単語の出現回数を数える
+      for (const word of currentWords) {
+        wordCounts[word] = (wordCounts[word] || 0) + 1;
+      }
+
+      const highlightedTranscript = allWords.map(word => {
+        return wordCounts[word] >= 2 ? `<span class="highlight">${word}</span>` : word;
+      }).join(' ');
+
+      document.getElementById('transcript').innerHTML = highlightedTranscript;
+      displayFrequentWords();
     });
 
     recognition.start();
@@ -49,7 +59,6 @@ document.getElementById('start').addEventListener('click', function () {
   }
 });
 
-// マイクの機能をオフにする
 document.getElementById('stop').addEventListener('click', function () {
   if (recognition) {
     recognition.stop();
@@ -68,7 +77,6 @@ document.getElementById('stop').addEventListener('click', function () {
   }
 });
 
-// エラーハンドリング
 function handleError(error) {
   console.error('エラーが発生しました: ', error);
   if (recognition) {
@@ -76,7 +84,6 @@ function handleError(error) {
   }
 }
 
-// 音声ストリームを処理する関数
 function handleSuccess(s) {
   stream = s;
   audioContext = new AudioContext();
@@ -85,11 +92,9 @@ function handleSuccess(s) {
   source.connect(analyser);
   analyser.connect(audioContext.destination);
 
-  // Canvasの設定
   const canvas = document.getElementById("canvas");
   const canvasContext = canvas.getContext("2d");
 
-  // FFTの設定
   analyser.fftSize = 256;
   const bufferLength = analyser.frequencyBinCount;
   const dataArray = new Uint8Array(bufferLength);
@@ -106,21 +111,3 @@ function handleSuccess(s) {
   }
   render();
 }
-
-// グラデーションの向き（degree）の初期値
-let degree = 0;
-
-// グラデーションの向きを変える関数
-function updateBackground() {
-  // グラデーションの向きを1度ずつ増加させる
-  degree = (degree + 1) % 360;
-
-  // 新しいグラデーションスタイルを計算
-  const newGradient = `linear-gradient(${degree}deg, #12c2e9, #c471ed, #f64f59)`;
-
-  // 背景スタイルを更新
-  document.body.style.background = newGradient;
-}
-
-// 100ミリ秒ごとにグラデーションを更新
-setInterval(updateBackground, 100);
