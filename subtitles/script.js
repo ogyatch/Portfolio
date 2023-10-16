@@ -23,35 +23,37 @@ kuromoji.builder({ dicPath: 'dict' }).build((err, newTokenizer) => {
       recognition.interimResults = true;
       recognition.continuous = true;
 
+      const exclusionList = ['あの', 'その', 'これ', 'うん', 'こちら', 'どれ'];  // 除外したい単語のリスト
+
       recognition.addEventListener('result', function (event) {
         for (let i = event.resultIndex; i < event.results.length; ++i) {
           if (event.results[i].isFinal) {
             const transcript = event.results[i][0].transcript.trim();
             const tokens = tokenizer.tokenize(transcript);
-      
+
             // 名詞だけを抽出して頻度をカウント
             const nouns = tokens.filter(token => token.pos === '名詞').map(token => token.surface_form);
             allWords.push(...nouns);
-      
+
             for (const word of nouns) {
               wordCounts[word] = (wordCounts[word] || 0) + 1;
             }
-      
-            // 名詞が2回以上出現した場合にハイライト
+
+            // 名詞が2回以上出現した場合、かつ、除外リストにない場合にハイライト
             const highlightedTranscript = tokens.map(token => {
-              if (token.pos === '名詞' && wordCounts[token.surface_form] >= 2) {
+              if (token.pos === '名詞' && wordCounts[token.surface_form] >= 2 && !exclusionList.includes(token.surface_form)) {
                 return `<span class="highlight">${token.surface_form}</span>`;
               } else {
                 return token.surface_form;
               }
             }).join(' ');
-      
+
             // HTMLに発話内容を表示
             document.getElementById('transcript').innerHTML += highlightedTranscript + '<br>';
           }
         }
       });
-      
+
 
       recognition.start();
     } else {
