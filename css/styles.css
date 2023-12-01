@@ -218,6 +218,28 @@ main {
     margin-top: 24px;
 }
 
+ul {
+    list-style-type: none; /* リストマーカーを非表示にする */
+    padding-left: 0px; /* インデントのための左パディング */
+    margin-top: 8px;
+    color: #aaa;
+}
+
+ul li::before {
+    content: '・'; /* リストの各項目の前に付けるマーカー */
+    color: #aaa; /* マーカーの色を設定 */
+    padding-right: 4px; /* マーカーとテキストの間のスペース */
+}
+
+/* リンクに関するスタイル */
+ul li a {
+    color: #000; /* リンクのテキスト色を黒に設定 */
+    text-decoration: none !important; /* 下線を削除 */
+}
+
+ul li a:hover {
+    text-decoration: underline !important; 
+}
 
 /* フッターのスタイル */
 footer {
