@@ -146,7 +146,7 @@ main {
 .content-area h3, .contact-area h3 {
     font-size: 16px;
     font-weight: 400;
-    margin-top: 60px;
+    margin-top: 40px;
 }
 
 .content-area p, .contact-area p {
@@ -199,22 +199,18 @@ ul {
     list-style-type: none;
     padding-left: 0px;
     margin-top: 8px;
-    color: #aaa;
+    color: black;
+    font-size: 14px;
+}
+
+ul li {
+    margin-bottom: 16px;
 }
 
 ul li::before {
-    content: '・';
-    color: #aaa;
+    content: '- ';
+    color: black;
     padding-right: 4px;
-}
-
-ul li a {
-    color: #000;
-    text-decoration: none !important;
-}
-
-ul li a:hover {
-    text-decoration: underline !important; 
 }
 
 footer {
