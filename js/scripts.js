@@ -1,21 +1,43 @@
-$(document).ready(function () {
-    $('#hamburger-menu').click(function () {
-        $('#menu-shade').toggle(); // シェードの表示・非表示を切り替え
+$(document).ready(function(){
+    $('.thumbnail').hover(function(){
+        // マウスオーバーされたとき
+        let originalTextCategory = $(this).find('.thumbnail-category').text();
+        let originalTextTitle = $(this).find('.thumbnail-title').text();
 
-        const currentIconSrc = $('#menu-icon').attr('src');
+        // テキストをハイフンでクリアする
+        $(this).find('.thumbnail-category').text("".repeat(originalTextCategory.length));
+        $(this).find('.thumbnail-title').text("".repeat(originalTextTitle.length));
 
-        if (currentIconSrc === 'img/bars-solid.png') {
-            $('#menu-icon').attr('src', 'img/xmark-solid.png');
-            $('.hamburger-menu').css('z-index', '1001'); // シェードより上に
-        } else {
-            $('#menu-icon').attr('src', 'img/bars-solid.png');
-            $('.hamburger-menu').css('z-index', '0'); // 元に戻す
-        }
-    });
+        // アニメーション開始
+        animateText($(this).find('.thumbnail-category'), originalTextCategory, 340);
+        animateText($(this).find('.thumbnail-title'), originalTextTitle, 340);
 
-    $('#menu-shade').click(function () {
-        $(this).hide();
-        $('#menu-icon').attr('src', 'img/bars-solid.png');
-        $('.hamburger-menu').css('z-index', '0'); // 元に戻す
+    }, function(){
+        // マウスが離れたとき（テキストをリセット）
+        $(this).find('.thumbnail-category').text(originalTextCategory);
+        $(this).find('.thumbnail-title').text(originalTextTitle);
     });
 });
+
+function animateText(element, originalText, duration){
+    let length = originalText.length;
+    let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+=-[]{}|;:',.<>?/";
+
+    for (let i = 0; i < length; i++) {
+        setTimeout(function() {
+            let charAnimation = setInterval(function(){
+                let tempText = element.text();
+                let randomChar = possible.charAt(Math.floor(Math.random() * possible.length));
+                element.text(tempText.substring(0, i) + randomChar + tempText.substring(i + 1));
+            }, 50);
+
+            // アニメーションを0.55秒後に終了し、オリジナルの文字に戻す
+            setTimeout(function(){
+                clearInterval(charAnimation);
+                let tempText = element.text();
+                element.text(tempText.substring(0, i) + originalText.charAt(i) + tempText.substring(i + 1));
+            }, 340);
+
+        }, i * (550 / length)); // 各文字に対するタイムラグを設定
+    }
+}

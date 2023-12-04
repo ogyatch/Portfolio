@@ -86,17 +86,6 @@ header .nav-buttons a:hover {
     color: #666;
 }
 
-/* ハンバーガーメニューのスタイル */
-.hamburger-menu {
-    display: none;
-    cursor: pointer;
-
-}
-
-.menu-shade {
-    display: none;
-}
-
 /* コンテンツエリアのスタイル */
 main {
     flex-grow: 1;
@@ -107,68 +96,51 @@ main {
 
 .thumbnail {
     width: 340px;
-    /* サムネイルの幅を設定 */
     height: auto;
     text-align: center;
-    /* キャプションを中央揃えにする */
     padding-left: 15px;
-    /* 左のpaddingを15pxに設定 */
     padding-right: 15px;
-    /* 右のpaddingを15pxに設定 */
     margin-bottom: 60px;
-    /* 下のmarginを60pxに設定 */
 }
 
 .thumbnail-container {
     display: grid;
-    /* グリッドレイアウトを使用 */
     grid-template-columns: repeat(3, 1fr);
-    /* 3列のグリッドを作成 */
     gap: 20px;
-    /* サムネイル間のスペース */
     margin: auto 20px;
 }
 
 .thumbnail img {
     width: 100%;
-    /* 画像の幅をサムネイルの幅に合わせる */
     object-fit: cover;
-    /* 画像のアスペクト比を維持しつつ、指定したサイズに合わせる */
 }
 
 .thumbnail-caption {
     text-align: left;
-    /* キャプションを左揃えにする */
     margin-top: 4px;
-    /* キャプションの上のスペースを設定 */
 }
 
 .thumbnail-category {
     font-size: 12px;
     font-weight: 400;
     display: block;
-    /* 新しい行に表示する */
 }
 
 .thumbnail-title {
     font-size: 18px;
     font-weight: 400;
     display: block;
-    /* 新しい行に表示する */
 }
 
-/* (Project Name).htmlのメインコンテンツのスタイル */
 .content-area, .contact-area {
     max-width: 855px;
     margin: 0 20px;
-    /* これにより、content-areaが中央に配置されます */
 }
 
 .content-area h2, .contact-area h2 {
     font-size: 24px;
     font-weight: 400;
     margin-bottom: 40px;
-    /* 説明文の上部との間隔を取るためのマージンです */
 }
 
 .content-area h3, .contact-area h3 {
@@ -178,10 +150,18 @@ main {
 }
 
 .content-area p, .contact-area p {
-    font-size: 16px;
+    font-size: 14px;
     top: 0;
     line-height: 2;
     margin-top: 8px;
+}
+
+.content-area p[lang="en"] {
+    font-size: 16px;
+}
+
+p[lang="ja"] {
+    font-size: 14px;
 }
 
 .content-area a {
@@ -194,14 +174,11 @@ main {
 
 .content-area a, .contact-area a{
     color: black;
-    /* テキストの色を黒に設定 */
     transition: background-color 0.3s;
-    /* 背景色の変更を滑らかにする */
 }
 
 .content-area a:hover, .contact-area a:hover {
     color: #666;
-    /* ホバー時の色を少し暗くします（お好みで変更可） */
 }
 
 .content-area img {
@@ -219,152 +196,36 @@ main {
 }
 
 ul {
-    list-style-type: none; /* リストマーカーを非表示にする */
-    padding-left: 0px; /* インデントのための左パディング */
+    list-style-type: none;
+    padding-left: 0px;
     margin-top: 8px;
     color: #aaa;
 }
 
 ul li::before {
-    content: '・'; /* リストの各項目の前に付けるマーカー */
-    color: #aaa; /* マーカーの色を設定 */
-    padding-right: 4px; /* マーカーとテキストの間のスペース */
+    content: '・';
+    color: #aaa;
+    padding-right: 4px;
 }
 
-/* リンクに関するスタイル */
 ul li a {
-    color: #000; /* リンクのテキスト色を黒に設定 */
-    text-decoration: none !important; /* 下線を削除 */
+    color: #000;
+    text-decoration: none !important;
 }
 
 ul li a:hover {
     text-decoration: underline !important; 
 }
 
-/* フッターのスタイル */
 footer {
     height: 210px;
     width: 100%;
-    /* 画面幅全体を使用 */
 }
 
 .footer-content {
     font-size: 10px;
     text-align: center;
-    /* テキストを中央揃えにする */
     width: 100%;
-    /* コンテナの幅を100%にする */
     line-height: 210px;
-    /* フッターの高さと同じにすることで、テキストを垂直方向に中央揃えにします */
 }
 
-
-/* 画面幅が930px以下のデバイスに適用するスタイル */
-@media (max-width: 930px) {
-    main {
-        padding-top: 80px;
-    }
-
-    .thumbnail-container {
-        grid-template-columns: repeat(1, 1fr);
-        /* 1列のグリッドを作成 */
-    }
-
-    /* ヘッダーのスタイル */
-    header {
-        flex-direction: column;
-        height: auto;
-        padding: 20px 0;
-    }
-
-    .header-container {
-        flex-direction: row;
-        align-items: center;
-    }
-
-    /* ヘッダータイトルのスタイル */
-    header h1 {
-        position: static;
-        z-index: 10;
-        margin: 0;
-        margin-bottom: 10px;
-        padding-left: 40px;
-    }
-
-    header .nav-buttons {
-        position: static;
-        justify-content: center;
-        gap: 5px;
-        padding-right: 20px;
-    }
-
-    /* ABOUTとCONTACTを非表示にする */
-    .desktop-nav {
-        display: none;
-    }
-
-    /* ハンバーガーメニューのスタイル */
-    .hamburger-menu {
-        z-index: 1001;
-        position: relative;
-        display: block;
-    }
-
-    .hamburger-menu img {
-        height: 24px;
-        width: auto;
-    }
-
-    .menu-shade {
-        display: none;
-        position: fixed;
-        /* これが重要 */
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.7);
-        /* 半透明の黒 */
-        z-index: 1000;
-        /* 他の要素より前面に */
-    }
-
-    .overlay-links {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-        color: white;
-        font-size: 2em;
-    }
-
-    .overlay-links a {
-        margin: 15px;
-        text-decoration: none;
-        color: inherit;
-        /* 親要素（.overlay-links）の色を継承 */
-    }
-
-
-    .content-area, .contact-area {
-        padding: 0 20px;
-    }
-
-    .content-area img {
-        max-width: 100%;
-        margin-top: 24px;
-    }
-
-    .content-area h2, .contact-area h2 {
-        margin-bottom: 20px;
-    }
-
-    .content-area h3 {
-        margin-top: 60px;
-    }
-
-    .content-area p, .contact-area p {
-        margin-top: 16px;
-    }
-}
