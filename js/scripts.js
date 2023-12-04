@@ -1,27 +1,40 @@
 $(document).ready(function(){
+    // サムネイルの処理
     $('.thumbnail').hover(function(){
-        // マウスオーバーされたとき
+        // オリジナルのテキストを保存
         let originalTextCategory = $(this).find('.thumbnail-category').text();
         let originalTextTitle = $(this).find('.thumbnail-title').text();
 
-        // テキストをハイフンでクリアする
-        $(this).find('.thumbnail-category').text("".repeat(originalTextCategory.length));
-        $(this).find('.thumbnail-title').text("".repeat(originalTextTitle.length));
-
-        // アニメーション開始
+        // アニメーションを開始
         animateText($(this).find('.thumbnail-category'), originalTextCategory, 340);
         animateText($(this).find('.thumbnail-title'), originalTextTitle, 340);
 
     }, function(){
-        // マウスが離れたとき（テキストをリセット）
-        $(this).find('.thumbnail-category').text(originalTextCategory);
-        $(this).find('.thumbnail-title').text(originalTextTitle);
+        // マウスが離れたときに元のテキストに戻す
+        $(this).find('.thumbnail-category').text($(this).find('.thumbnail-category').attr('data-original-text'));
+        $(this).find('.thumbnail-title').text($(this).find('.thumbnail-title').attr('data-original-text'));
+    });
+
+    // リスト項目の処理
+    $('ul li').each(function(){
+        // 各リスト項目のオリジナルのテキストを保存
+        $(this).attr('data-original-text', $(this).text());
+    }).hover(function(){
+        // マウスオーバーされたときの処理
+        let originalText = $(this).attr('data-original-text');
+        animateText($(this), originalText, 340);
+    }, function(){
+        // マウスが離れたときの処理
+        $(this).text($(this).attr('data-original-text'));
     });
 });
 
 function animateText(element, originalText, duration){
     let length = originalText.length;
     let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+=-[]{}|;:',.<>?/";
+
+    // テキストをクリアする
+    element.text("".repeat(length));
 
     for (let i = 0; i < length; i++) {
         setTimeout(function() {
@@ -31,7 +44,7 @@ function animateText(element, originalText, duration){
                 element.text(tempText.substring(0, i) + randomChar + tempText.substring(i + 1));
             }, 50);
 
-            // アニメーションを0.55秒後に終了し、オリジナルの文字に戻す
+            // アニメーションを終了し、オリジナルの文字に戻す
             setTimeout(function(){
                 clearInterval(charAnimation);
                 let tempText = element.text();

@@ -132,24 +132,25 @@ main {
     display: block;
 }
 
-.content-area, .contact-area {
-    max-width: 855px;
+.content-area {
+    /* max-width: 855px; */
+    width: 855px;
     margin: 0 20px;
 }
 
-.content-area h2, .contact-area h2 {
+.content-area h2 {
     font-size: 24px;
     font-weight: 400;
     margin-bottom: 40px;
 }
 
-.content-area h3, .contact-area h3 {
+.content-area h3 {
     font-size: 16px;
     font-weight: 400;
     margin-top: 40px;
 }
 
-.content-area p, .contact-area p {
+.content-area p {
     font-size: 14px;
     top: 0;
     line-height: 2;
@@ -160,24 +161,17 @@ main {
     font-size: 16px;
 }
 
-p[lang="ja"] {
+.content-area p[lang="ja"] {
     font-size: 14px;
 }
 
 .content-area a {
     text-decoration: underline;
-}
-
-.contact-area a {
-    text-decoration: underline;
-}
-
-.content-area a, .contact-area a{
     color: black;
     transition: background-color 0.3s;
 }
 
-.content-area a:hover, .contact-area a:hover {
+.content-area a:hover {
     color: #666;
 }
 
