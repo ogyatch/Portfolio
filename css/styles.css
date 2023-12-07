@@ -219,3 +219,6 @@ footer {
     line-height: 210px;
 }
 
+.clickable {
+    cursor: pointer; /* マウスカーソルを指に変更 */
+}
