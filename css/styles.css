@@ -138,6 +138,13 @@ main {
     margin: 0 20px;
 }
 
+.content-area h1 {
+    font-size: 32px;
+    font-weight: 600;
+    margin-top: 80px;
+    margin-bottom: 24px;
+}
+
 .content-area h2 {
     font-size: 24px;
     font-weight: 400;
@@ -189,12 +196,20 @@ main {
     margin-top: 24px;
 }
 
+ul[lang="en"] {
+    font-size: 17px;
+}
+
+ul[lang="ja"] {
+    font-size: 15px;
+}
+
 ul {
     list-style-type: none;
     padding-left: 0px;
     margin-top: 8px;
     color: black;
-    font-size: 14px;
+    /* font-size: 14px; */
 }
 
 ul li {
