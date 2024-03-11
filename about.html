@@ -8,21 +8,21 @@
     <link rel="stylesheet" href="css/styles.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script defer src="js/scripts.js"></script>
+    <script>
+		fetch('header.html')
+			.then(response => response.text())
+			.then(data => {
+				document.getElementById('header-container').innerHTML = data;
+			});
+	</script>
+	<div id="header-container"></div>
 </head>
 
 <body>
     <div class="page-container">
-        <header>
-            <div class="header-container">
-                <h1><a href="index.html">TOMOHIRO OGAWA</a></h1>
-                <div class="nav-buttons">
-                    <a class="desktop-nav" href="about.html">ABOUT</a>
-                </div>
-            </div>
-        </header>
         <main>
             <div class="content-area">
-                <h1>About</h1>
+                <h2>About</h2>
                 <p lang="en">
                     I advocate for 'Defign' (Define & Design), an approach to defining and solving technical challenges
                     through design, and I am passionate about implementing diverse technologies in society. With a
