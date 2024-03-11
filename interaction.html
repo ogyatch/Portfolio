@@ -1,44 +1,31 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tomohiro Ogawa</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script defer src="js/scripts.js"></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Tomohiro Ogawa</title>
+	<link rel="stylesheet" href="css/styles.css">
+	<link href="https://fonts.googleapis.com/css?family=Poppins:400,400i,700,700i" rel="stylesheet">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script defer src="js/scripts.js"></script>
 </head>
+
 <body>
-    <div id="header-container"></div>
-    <div class="page-container">
-        <main>
-            <div class="animation-container">
-                <div class="animation-thumbnail">
-                    <a href="animation1.html"></a>
-                    <div id="animation1"></div>
-                    <div class="animation-caption">
-                        <span class="animation-category">Interaction</span>
-                        <span class="animation-title">#1</span>
-                    </div>
-                </div>
-                <!-- <div class="animation-thumbnail">
-                    <a href="animation2.html"></a>
-                    <div id="animation2"></div>
-                    <div class="animation-caption">
-                        <span class="animation-category">Interaction</span>
-                        <span class="animation-title">#1</span>
-                    </div>
-                </div>
-				<div class="animation-thumbnail">
+	<div id="header-container"></div>
+	<div class="page-container">
+		<main>
+			<div class="animation-container">
+				<!-- <div class="animation-thumbnail">
                     <a href="animation3.html"></a>
                     <div id="animation3"></div>
                     <div class="animation-caption">
                         <span class="animation-category">Interaction</span>
                         <span class="animation-title">#1</span>
                     </div>
-                </div>
-				<div class="animation-thumbnail">
+                </div> -->
+				<!-- <div class="animation-thumbnail">
                     <a href="animation4.html"></a>
                     <div id="animation4"></div>
                     <div class="animation-caption">
@@ -46,39 +33,57 @@
                         <span class="animation-title">#1</span>
                     </div>
                 </div> -->
-            </div>
-        </main>
-        <footer>
-            <div class="footer-content">
-                © TOMOHIRO OGAWA
-            </div>
-        </footer>
-    </div>
+				<div class="animation-thumbnail">
+					<a href="animation2.html"></a>
+					<div id="animation2"></div>
+					<div class="animation-caption">
+						<span class="animation-category">Interaction</span>
+						<span class="animation-title">#2</span>
+					</div>
+				</div>
+				<div class="animation-thumbnail">
+					<a href="animation1.html"></a>
+					<div id="animation1"></div>
+					<div class="animation-caption">
+						<span class="animation-category">Interaction</span>
+						<span class="animation-title">#1</span>
+					</div>
+				</div>
 
-    <script>
-        fetch('header.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('header-container').innerHTML = data;
-            });
+			</div>
+		</main>
+		<footer>
+			<div class="footer-content">
+				© TOMOHIRO OGAWA
+			</div>
+		</footer>
+	</div>
 
-        document.addEventListener("DOMContentLoaded", function() {
-            loadAnimation('js/animation1.js', 'animation1');
+	<script>
+		fetch('header.html')
+			.then(response => response.text())
+			.then(data => {
+				document.getElementById('header-container').innerHTML = data;
+			});
+
+		document.addEventListener("DOMContentLoaded", function () {
+			loadAnimation('js/animation1.js', 'animation1');
 			loadAnimation('js/animation2.js', 'animation2');
 			loadAnimation('js/animation3.js', 'animation3');
 			loadAnimation('js/animation4.js', 'animation4');
-        });
+		});
 
-        function loadAnimation(scriptPath, containerId) {
-            let script = document.createElement('script');
-            script.src = scriptPath;
-            script.onload = function() {
-                new p5(function(p) {
-                    window["setupAnimation"](p, containerId);
-                }, containerId);
-            };
-            document.head.appendChild(script);
-        }
-    </script>
+		function loadAnimation(scriptPath, containerId) {
+			let script = document.createElement('script');
+			script.src = scriptPath;
+			script.onload = function () {
+				new p5(function (p) {
+					window["setupAnimation"](p, containerId);
+				}, containerId);
+			};
+			document.head.appendChild(script);
+		}
+	</script>
 </body>
+
 </html>
