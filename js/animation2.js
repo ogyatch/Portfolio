@@ -5,7 +5,6 @@ window.setupAnimation = function(p, containerId) {
   let textColor = '#361d32';
   let newBgColor = '#361d32';
   let newTextColor = '#f1e8e6';
-  let waveSize = 0;
   let maxWaveSize;
   let changing = false;
   let waveCenterX, waveCenterY;
@@ -16,7 +15,7 @@ window.setupAnimation = function(p, containerId) {
     canvas.parent(containerId);
     p.textAlign(p.CENTER, p.CENTER);
     p.textFont('Poppins');
-    p.textSize(21);
+    p.textSize(20);
     maxWaveSize = p.dist(0, 0, p.width, p.height);
   };
 
@@ -26,23 +25,23 @@ window.setupAnimation = function(p, containerId) {
       p.fill(newBgColor);
       p.noStroke();
 
-      let progress = (p.frameCount - startFrame) / 60; // 60 frames = 1 second
-      progress = easeInOutCubic(progress); // Apply easing function
+      let progress = (p.frameCount - startFrame) / 60;
+      progress = easeInOutCubic(progress);
       let currentWaveSize = progress * maxWaveSize;
 
       p.ellipse(waveCenterX, waveCenterY, currentWaveSize * 2, currentWaveSize * 2);
 
       p.fill(textColor);
-      p.text('Click', p.width / 2, p.height / 2);
+      p.text('Click Anywhere', p.width / 2, p.height / 2);
 
       if (currentWaveSize >= maxWaveSize) {
         changing = false;
-        [bgColor, newBgColor, textColor, newTextColor] = [newBgColor, bgColor, newTextColor, textColor]; // Swap colors
+        [bgColor, newBgColor, textColor, newTextColor] = [newBgColor, bgColor, newTextColor, textColor];
       }
     } else {
       p.background(bgColor);
       p.fill(textColor);
-      p.text('Click', p.width / 2, p.height / 2);
+      p.text('Click Anywhere', p.width / 2, p.height / 2);
     }
   };
 
@@ -61,7 +60,7 @@ window.setupAnimation = function(p, containerId) {
       waveCenterX = p.mouseX;
       waveCenterY = p.mouseY;
       startFrame = p.frameCount;
-      return false; // この行はブラウザのデフォルトのタッチ動作を防ぐために重要です
+      return false;
     }
   };
   
