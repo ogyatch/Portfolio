@@ -2,12 +2,11 @@
 
 .animation-thumbnail {
     width: 340px;
-    height: 292px;
+    height: auto;
     text-align: center;
     padding-left: 15px;
     padding-right: 15px;
     margin-bottom: 60px;
-    overflow: hidden;
 }
 
 .animation-container {
@@ -36,25 +35,38 @@
 
 /* タブレットとモバイルデバイスのためのスタイル */
 @media screen and (max-width: 1024px) {
+    .animation-thumbnail {
+        width: 100%;
+        height: auto;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 0;
+    }
     .animation-container {
         grid-template-columns: repeat(2, 1fr);
+        /* width: 100%; */
     }
-    .animation-thumbnail {
-        box-sizing: border-box;
-        width: calc(100% - 40px);
-        margin: 0 20px;
+    .content-area p[lang="en"] {
+        font-size: 16px;
     }
 }
 
 /* モバイルデバイスのためのスタイル */
 @media screen and (max-width: 768px) {
+    .animation-thumbnail {
+        width: 310px;
+        height: auto;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 0;
+    }
     .animation-container {
         grid-template-columns: 1fr;
+        width: 100%;
     }
-    .animation-thumbnail {
-        box-sizing: border-box;
-        width: calc(100% - 40px);
-        margin: 0 20px;
+    .content-area p[lang="en"] {
+        font-size: 16px;
     }
 }
+
 
