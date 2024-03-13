@@ -150,28 +150,29 @@ td {
 /* モバイルデバイスのためのスタイル */
 @media screen and (max-width: 768px) {
     .thumbnail {
-        width: 100%;
+        width: 310px;
         height: auto;
+        padding: 0;
     }
 
     .thumbnail-container {
         grid-template-columns: 1fr;
     }
 
-    .content-area {
+    /* .content-area {
         box-sizing: border-box;
         width: calc(100% - 40px);
         margin: 0 20px;
-    }
+    } */
 
     .content-area p[lang="en"] {
         font-size: 16px;
     }
 
-    .content-area img {
+    /* .content-area img {
         max-width: 100%;
         height: auto;
-    }
+    } */
 
     table {
         width: 80%;
