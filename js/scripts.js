@@ -12,19 +12,6 @@ $(document).ready(function () {
         $(this).find('.thumbnail-title').text($(this).find('.thumbnail-title').attr('data-original-text'));
     });
 
-    // $('ul li[data-url]').each(function(){
-    //     $(this).attr('data-original-text', $(this).text());
-    // }).hover(function(){
-    //     let originalText = $(this).attr('data-original-text');
-    //     animateText($(this), originalText, 340, () => {
-    //         $(this).addClass('clickable').on('click', function() {
-    //             window.open($(this).data('url'), '_blank');
-    //         });
-    //     });
-    // }, function(){
-    //     $(this).removeClass('clickable').off('click');
-    //     $(this).text($(this).attr('data-original-text'));
-    // });
 });
 
 function animateText(element, originalText, duration, callback){

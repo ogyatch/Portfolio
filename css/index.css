@@ -89,9 +89,6 @@
 }
 
 .content-area img {
-    width: 100%;
-    height: auto;
-    max-width: 855px;
     margin-top: 0px;
     margin-bottom: 0px;
 }
@@ -119,27 +116,56 @@ td {
     text-align: left;
 }
 
-/* ul[lang="en"] {
-    font-size: 17px;
+/* タブレットとモバイルデバイスのためのスタイル */
+@media screen and (max-width: 1024px) {
+    .thumbnail {
+        width: 100%;
+        height: auto;
+    }
+
+    .thumbnail-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .content-area {
+        box-sizing: border-box;
+        width: calc(100% - 40px);
+        margin: 0 20px;
+    }
+
+    .content-area img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    table {
+        width: 60%;
+    }
 }
 
-ul[lang="ja"] {
-    font-size: 15px;
-}
+/* モバイルデバイスのためのスタイル */
+@media screen and (max-width: 768px) {
+    .thumbnail {
+        width: 100%;
+        height: auto;
+    }
 
-ul {
-    list-style-type: none;
-    padding-left: 0px;
-    margin-top: 8px;
-    color: black;
-}
+    .thumbnail-container {
+        grid-template-columns: 1fr;
+    }
 
-ul li {
-    margin-bottom: 8px;
-}
+    .content-area {
+        box-sizing: border-box;
+        width: calc(100% - 40px);
+        margin: 0 20px;
+    }
 
-ul li::before {
-    content: '- ';
-    color: black;
-    padding-right: 4px;
-} */
+    .content-area img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    table {
+        width: 80%;
+    }
+}

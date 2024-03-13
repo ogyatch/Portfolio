@@ -9,12 +9,12 @@
 
 .animation-thumbnail {
     width: 340px;
-    height: 292px; /* 適切な高さを指定する */
+    height: 292px;
     text-align: center;
     padding-left: 15px;
     padding-right: 15px;
     margin-bottom: 60px;
-    overflow: hidden; /* 内部の要素が表示されるようにする */
+    overflow: hidden;
 }
 
 .animation-caption {
@@ -34,4 +34,27 @@
     display: block;
 }
 
+/* タブレットとモバイルデバイスのためのスタイル */
+@media screen and (max-width: 1024px) {
+    .animation-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .animation-thumbnail {
+        box-sizing: border-box;
+        width: calc(100% - 40px);
+        margin: 0 20px;
+    }
+}
+
+/* モバイルデバイスのためのスタイル */
+@media screen and (max-width: 768px) {
+    .animation-container {
+        grid-template-columns: 1fr;
+    }
+    .animation-thumbnail {
+        box-sizing: border-box;
+        width: calc(100% - 40px);
+        margin: 0 20px;
+    }
+}
 

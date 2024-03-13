@@ -95,7 +95,12 @@ footer {
     line-height: 210px;
 }
 
+/* タブレットとモバイルデバイスのためのスタイル */
+@media screen and (max-width: 1024px) {
 
+}
 
+/* モバイルデバイスのためのスタイル */
+@media screen and (max-width: 768px) {
 
-
+}
