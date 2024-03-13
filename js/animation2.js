@@ -55,10 +55,18 @@ window.setupAnimation = function(p, containerId) {
     }
   };
 
+  p.touchStarted = function() {
+    if (p.mouseX > 0 && p.mouseX < p.width && p.mouseY > 0 && p.mouseY < p.height) {
+      changing = true;
+      waveCenterX = p.mouseX;
+      waveCenterY = p.mouseY;
+      startFrame = p.frameCount;
+      return false; // この行はブラウザのデフォルトのタッチ動作を防ぐために重要です
+    }
+  };
+  
+
   function easeInOutCubic(t) {
     return t < 0.5 ? 4 * t * t * t : 1 - p.pow(-2 * t + 2, 3) / 2;
   }
 };
-
-// HTMLファイルでこのスクリプトを呼び出す場合は以下のようにします：
-// new p5((p) => setupAnimation(p, 'containerId'));

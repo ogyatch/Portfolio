@@ -18,13 +18,13 @@ window.setupAnimation = function (p, containerId) {
       let currentAngle = angle - i * angleGap;
       let easedAngle = easeInOut((currentAngle - p.HALF_PI) % p.TWO_PI / p.TWO_PI) * p.TWO_PI + p.HALF_PI;
 
-      let x = p.width / 2 + p.cos(easedAngle) * 70;
-      let y = p.height / 2 + p.sin(easedAngle) * 70;
+      let x = p.width / 2 + p.cos(easedAngle) * 60;
+      let y = p.height / 2 + p.sin(easedAngle) * 60;
       p.noStroke();
       let c = p.color('#1B99D6');
       c.setAlpha(opacities[i]);
       p.fill(c);
-      p.ellipse(x, y, 30, 30);
+      p.ellipse(x, y, 20, 20);
     }
 
     angle += speed;
