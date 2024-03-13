@@ -11,14 +11,6 @@
 	
 	<body>
     <div class="page-container">
-        <header>
-            <div class="header-container">
-                <h1><a href="../index.html">TOMOHIRO OGAWA</a></h1>
-                <div class="nav-buttons">
-                    <a class="desktop-nav" href="../about.html">ABOUT</a>
-                </div>
-            </div>
-        </header>
         <main>
 			<div class="content-area">
 				<h3>懸賞ノート</h3>
@@ -38,12 +30,26 @@
                 <p>アプリは、本プライバシーポリシーの内容を改訂する場合があります。大きな変更がある場合には、アプリ内または公式サイト上で明確に通知します。</p>
             </div>
         </main>
-        <footer>
-			<div class="footer-content">
-				© 2023 TOMOHIRO OGAWA
-			</div>
-		</footer>
     </div>
+
+    <div id="header-container"></div>
+	<script>
+		fetch('header.html')
+			.then(response => response.text())
+			.then(data => {
+				document.getElementById('header-container').innerHTML = data;
+			});
+	</script>
+
+	<div id="footer-placeholder"></div>
+	<script>
+		fetch('footer.html')
+			.then(response => response.text())
+			.then(html => {
+				document.getElementById('footer-placeholder').innerHTML = html;
+			});
+	</script>
+    
 </body>
 
 </html>

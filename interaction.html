@@ -13,7 +13,6 @@
 </head>
 
 <body>
-	<div id="header-container"></div>
 	<div class="page-container">
 		<main>
 			<div class="animation-container">
@@ -52,20 +51,9 @@
 
 			</div>
 		</main>
-		<footer>
-			<div class="footer-content">
-				© TOMOHIRO OGAWA
-			</div>
-		</footer>
 	</div>
 
 	<script>
-		fetch('header.html')
-			.then(response => response.text())
-			.then(data => {
-				document.getElementById('header-container').innerHTML = data;
-			});
-
 		document.addEventListener("DOMContentLoaded", function () {
 			loadAnimation('js/animation1.js', 'animation1');
 			loadAnimation('js/animation2.js', 'animation2');
@@ -84,6 +72,25 @@
 			document.head.appendChild(script);
 		}
 	</script>
+
+	<div id="header-container"></div>
+	<script>
+		fetch('header.html')
+			.then(response => response.text())
+			.then(data => {
+				document.getElementById('header-container').innerHTML = data;
+			});
+	</script>
+
+	<div id="footer-placeholder"></div>
+	<script>
+		fetch('footer.html')
+			.then(response => response.text())
+			.then(html => {
+				document.getElementById('footer-placeholder').innerHTML = html;
+			});
+	</script>
+
 </body>
 
 </html>
