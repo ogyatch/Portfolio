@@ -1,7 +1,6 @@
 window.setupAnimation = function (p, containerId) {
   let angle = p.HALF_PI;
   let speed = 0.05;
-  // const totalFrames = 120;
   const numCircles = 5;
   const angleGap = 0.2;
   const opacities = [255, 255 * 0.85, 255 * 0.70, 255 * 0.55, 255 * 0.40];
