@@ -1,10 +1,10 @@
 window.setupAnimation = function(p, containerId) {
   let canvasWidth = 310;
   let canvasHeight = 232.5;
-  let bgColor = '#f1e8e6';
-  let textColor = '#361d32';
-  let newBgColor = '#361d32';
-  let newTextColor = '#f1e8e6';
+  let bgColor = '#FFF';
+  let textColor = '#000';
+  let newBgColor = '#000';
+  let newTextColor = '#FFF';
   let maxWaveSize;
   let changing = false;
   let waveCenterX, waveCenterY;
@@ -32,7 +32,7 @@ window.setupAnimation = function(p, containerId) {
       p.ellipse(waveCenterX, waveCenterY, currentWaveSize * 2, currentWaveSize * 2);
 
       p.fill(textColor);
-      p.text('Click Anywhere', p.width / 2, p.height / 2);
+      p.text('Click Me', p.width / 2, p.height / 2);
 
       if (currentWaveSize >= maxWaveSize) {
         changing = false;
@@ -41,7 +41,7 @@ window.setupAnimation = function(p, containerId) {
     } else {
       p.background(bgColor);
       p.fill(textColor);
-      p.text('Click Anywhere', p.width / 2, p.height / 2);
+      p.text('Click Me', p.width / 2, p.height / 2);
     }
   };
 

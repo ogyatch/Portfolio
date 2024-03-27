@@ -11,17 +11,17 @@ window.setupAnimation = function (p, containerId) {
   };
 
   p.draw = function () {
-    p.background('#FFF4EC');
+    p.background('#FFF'); // 背景色を#FFFに変更
 
     for (let i = 0; i < numCircles; i++) {
       let currentAngle = angle - i * angleGap;
       let easedAngle = easeInOut((currentAngle - p.HALF_PI) % p.TWO_PI / p.TWO_PI) * p.TWO_PI + p.HALF_PI;
-
       let x = p.width / 2 + p.cos(easedAngle) * 60;
       let y = p.height / 2 + p.sin(easedAngle) * 60;
+
       p.noStroke();
-      let c = p.color('#1B99D6');
-      c.setAlpha(opacities[i]);
+      let c = p.color('#000'); // 円の色を#000に設定
+      c.setAlpha(opacities[i]); // 各円の不透明度を設定
       p.fill(c);
       p.ellipse(x, y, 20, 20);
     }
@@ -33,4 +33,3 @@ window.setupAnimation = function (p, containerId) {
     return -0.5 * (p.cos(p.PI * t) - 1);
   }
 };
-
