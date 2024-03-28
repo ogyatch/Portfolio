@@ -11,7 +11,7 @@ window.setupAnimation = function (p, containerId) {
   };
 
   p.draw = function () {
-    p.background('#FFF'); // 背景色を#FFFに変更
+    p.background('#FFF');
 
     for (let i = 0; i < numCircles; i++) {
       let currentAngle = angle - i * angleGap;
@@ -20,8 +20,8 @@ window.setupAnimation = function (p, containerId) {
       let y = p.height / 2 + p.sin(easedAngle) * 60;
 
       p.noStroke();
-      let c = p.color('#000'); // 円の色を#000に設定
-      c.setAlpha(opacities[i]); // 各円の不透明度を設定
+      let c = p.color('#000');
+      c.setAlpha(opacities[i]);
       p.fill(c);
       p.ellipse(x, y, 20, 20);
     }
