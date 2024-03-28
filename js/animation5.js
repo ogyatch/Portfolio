@@ -78,8 +78,8 @@ window.setupAnimation = function(p, containerId) {
   };
 
   p.touchMoved = function() {
-    let touch = p.touches[p.touches.length - 1];
-    handleMovement(touch.x, touch.y);
-    return false; // デフォルトのタッチ動作を防止
+    handleMovement(p.touchX, p.touchY);
+    return false; // デフォルトのブラウザ動作を防止
   };
+  
 };
