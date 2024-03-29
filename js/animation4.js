@@ -64,4 +64,21 @@ window.setupAnimation = function(p, containerId) {
       circle.y += (circle.initialY - circle.y) * returnSpeed;
     }
   };
+
+  // タッチがアニメーションのキャンバス領域内かどうかを判定する関数
+  function isInAnimationArea(x, y) {
+    return x > 0 && x < 310 && y > 0 && y < 232.5; // ここはサンプル座標。実際の座標に合わせて調整してください。
+  }
+
+  p.touchMoved = function() {
+    let touch = p.touches[p.touches.length - 1];
+
+    if (isInAnimationArea(touch.x, touch.y)) {
+      // キャンバス領域内でのタッチ操作
+      // （ここにタッチに関連する処理を記述する）
+
+      return false; // キャンバス領域内ではデフォルトのタッチ動作を阻止
+    }
+    // キャンバス領域外では通常のブラウザのタッチ動作を許可
+  };
 };
