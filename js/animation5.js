@@ -1,9 +1,9 @@
-window.setupAnimation = function(p, containerId) {
+window.setupAnimation = function (p, containerId) {
   const numLines = 6;
   const lineSpacing = 24;
-  const vibrationWidth = 120; // 振動幅（左右60px）
-  const vibrationHeight = 60; // 振動の高さ
-  const vibrationDuration = 6000; // 振動の継続時間（ミリ秒）
+  const vibrationWidth = 120;
+  const vibrationHeight = 60;
+  const vibrationDuration = 6000;
   let lines = [];
 
   class Line {
@@ -41,7 +41,7 @@ window.setupAnimation = function(p, containerId) {
     }
   }
 
-  p.setup = function() {
+  p.setup = function () {
     let canvas = p.createCanvas(310, 232.5);
     canvas.parent(containerId);
     p.frameRate(30);
@@ -53,7 +53,7 @@ window.setupAnimation = function(p, containerId) {
     }
   };
 
-  p.draw = function() {
+  p.draw = function () {
     p.background('#FFF');
     p.strokeWeight(1);
     p.stroke('#000');
@@ -73,14 +73,24 @@ window.setupAnimation = function(p, containerId) {
     }
   }
 
-  p.mouseMoved = function() {
+  p.mouseMoved = function () {
     handleMovement(p.mouseX, p.mouseY);
   };
 
-  p.touchMoved = function() {
+  // タッチがアニメーションのキャンバス領域内かどうかを判定する関数
+  function isInAnimationArea(x, y) {
+    // キャンバスの座標とサイズに基づいて判定
+    // 例: if (x > canvasX && x < canvasX + canvasWidth && y > canvasY && y < canvasY + canvasHeight)
+    // canvasX, canvasY, canvasWidth, canvasHeightを適切に設定
+    return x > 0 && x < 310 && y > 0 && y < 232.5; // ここはサンプルです。実際の座標に合わせて調整してください。
+  }
+
+  p.touchMoved = function () {
     let touch = p.touches[p.touches.length - 1];
     handleMovement(touch.x, touch.y);
-    return false; // デフォルトのタッチ動作を防止
+
+    if (isInAnimationArea(touch.x, touch.y)) {
+      return false;
+    }
   };
-  
 };
