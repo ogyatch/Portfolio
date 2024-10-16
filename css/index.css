@@ -47,27 +47,29 @@
 
 .content-area h1 {
     font-size: 32px;
-    font-weight: 600;
-    margin-top: 80px;
-    margin-bottom: 24px;
+    font-weight: 400;
+    /* margin-top: 80px; */
+    margin-bottom: 80px;
 }
 
 .content-area h2 {
     font-size: 24px;
     font-weight: 400;
-    margin-bottom: 40px;
+    margin-top: 80px;
+    margin-bottom: 24px;
 }
 
 .content-area h3 {
     font-size: 16px;
     font-weight: 400;
     margin-top: 40px;
+    margin-bottom: 24px;
 }
 
 .content-area p {
     top: 0;
     line-height: 2;
-    margin-top: 8px;
+    margin-top: 24px;
 }
 
 .content-area p[lang="en"] {
@@ -75,7 +77,7 @@
 }
 
 .content-area p[lang="ja"] {
-    font-size: 15px;
+    font-size: 16px;
 }
 
 .content-area a {

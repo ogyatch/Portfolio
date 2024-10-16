@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ogyatch.com</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script defer src="/js/scripts.js"></script>
+</head>
+
+<body>
+    <div class="page-container">
+        <main>
+            <div class="content-area">
+                <p>#UnityHub</p>
+                <h1>会社PCでUnity Hubインストール時のエラー解決法</h1>
+                <img src="/img/blog/unityhub-install-error-hero.png" alt="PNG Compress Saver" width="1400" height="auto">
+
+                <p lang="ja">
+                    Unityを会社のPCにインストールしようとすると、時々ネットワークやセキュリティ設定による問題が発生することがあります。私もこのような状況を経験しました。今回は、Windows 11の会社PCでUnity Hubを使ってインストールする際に遭遇したエラーについて、解決までのステップを紹介します。
+                </p>
+
+                <h2>エラー発生の背景</h2>
+                <img src="/img/blog/unityhub-install-error-1.png" alt="PNG Compress Saver" width="1400" height="auto">
+                
+                <p lang="ja">
+                    会社PCでは、通常、セキュリティやネットワークに対する制約が強化されています。このような環境でUnity Hubを使用してUnityをインストールすると、次のような要因が原因でエラーが発生することがあります。
+                </p>
+                <p lang="ja">
+                    <strong>プロキシ設定</strong>：会社のネットワークがインターネットアクセスを管理している場合、Unity Hubがサーバーに接続できないことがある。
+                </p>
+                <p lang="ja">
+                    <strong>ファイアウォールの設定</strong>：セキュリティを強化するために設定されたファイアウォールがUnity Hubの通信をブロックしてしまう可能性がある。
+                </p>
+                <p lang="ja">
+                    <strong>アンチウイルスソフト</strong>：特定のファイルや通信を安全でないとみなして、Unity Hubのダウンロードやインストールを妨げることがある。
+                </p>
+
+                <p lang="ja">
+                    Unity公式サポートページでは、これらの原因について詳しく説明されています。以下が参考リンクです。
+                    <a href="https://support.unity.com/hc/ja/articles/28179325110548-Unity-%E3%82%A8%E3%83%87%E3%82%A3%E3%82%BF%E3%83%BC%E3%81%8C%E3%83%80%E3%82%A6%E3%83%B3%E3%83%AD%E3%83%BC%E3%83%89%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84" target="_blank">Unityエディターがダウンロードできない問題の解決方法</a>
+                </p>
+
+                <h2>解決方法：Unity Hubを使わないでインストール</h2>
+                <img src="/img/blog/unityhub-install-error-2.png" alt="PNG Compress Saver" width="1400" height="auto">
+
+                <p lang="ja">
+                    私の場合、Unity Hubを使用したインストールではなく、Unityのアーカイブページから直接インストールすることで、エラーを回避することができました。<br>
+                    1. <strong>Hubを使わないインストール方法</strong> Unityの公式アーカイブページから直接ダウンロードしてインストール可能です。<br>
+                    2. <strong>手順</strong> 必要なバージョンを選択し、ダウンロード後インストールします。<br>
+                    3. <strong>インストール後の設定</strong> 手動でライセンス認証やプロジェクト設定を行うことで、問題なく開発を開始できます。
+                </p>
+
+                <h2>まとめ</h2>
+                <p lang="ja">
+                    会社PCのネットワーク制約によるエラーを、アーカイブからの直接インストールで回避できる場合があります。プロキシ設定の見直しが必要な場合は、ネットワーク管理者への相談が推奨されます。
+                </p>
+            </div>
+        </main>
+    </div>
+
+    <div id="header-container"></div>
+	<script>
+		fetch('header.html')
+			.then(response => response.text())
+			.then(data => {
+				document.getElementById('header-container').innerHTML = data;
+			});
+	</script>
+
+	<div id="footer-placeholder"></div>
+	<script>
+		fetch('footer.html')
+			.then(response => response.text())
+			.then(html => {
+				document.getElementById('footer-placeholder').innerHTML = html;
+			});
+	</script>
+    
+</body>
+</html>

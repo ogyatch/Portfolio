@@ -25,6 +25,10 @@ main {
     padding-top: 160px;
 }
 
+img {
+    margin-bottom: 20px;
+}
+
 header {
     width: 100%;
     padding: 50px 0;
