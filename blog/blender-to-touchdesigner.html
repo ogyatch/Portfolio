@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ogyatch.com</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script defer src="/js/scripts.js"></script>
+</head>
+
+<body>
+    <div class="page-container">
+        <main>
+            <div class="content-area">
+                <p>#TouchDesigner #Blender</p>
+                <h1>Blenderで作成した3DデータをTouch Designerにインポートする方法</h1>
+                <img src="/img/blog/blender-to-touchdesigner-hero.png" width="1400" height="auto">
+
+                <p lang="ja">
+                    Blenderで作成した3DデータをTouch DesignerでGeometryCOMPとして扱う方法を簡単にまとめると、以下の手順になります。この手法を使えば、BlenderでのモデルをTouch Designerでシームレスに活用できます。
+                </p>
+
+                <h2>1. Blenderで3Dモデルを作成し、.obj形式でエクスポートする</h2>
+                <img src="/img/blog/blender-to-touchdesigner-1.png" width="1400" height="auto">
+                <p lang="ja">
+                    まずはBlenderで好きな3Dモデルを作成し、それを.obj形式でエクスポートします。Blenderのメニューから「ファイル」→「エクスポート」→「.obj」を選択して保存してください。
+                </p>
+
+                <h2>2. Touch DesignerでGeometryCOMPを作成する</h2>
+                <img src="/img/blog/blender-to-touchdesigner-2.png" width="1400" height="auto">
+                <p lang="ja">
+                    次に、Touch Designerを開き、ネットワークエディター上でGeometryCOMPを作成します。作成するには、右クリックで「COMP」→「Geometry」を選択します。
+                </p>
+
+                <h2>3. GeometryCOMPの初期状態のTorusを削除</h2>
+                <img src="/img/blog/blender-to-touchdesigner-3.png" width="1400" height="auto">
+                <p lang="ja">
+                    デフォルトではGeometryCOMPにはトーラス（Torus）の形状が入っています。このトーラスを削除するために、GeometryCOMPをダブルクリックして中に入り、Torus SOPが選択された状態でDeleteキーを押して削除します。
+                </p>
+
+                <h2>4. Blenderからエクスポートした.objファイルをTouch Designerにドラッグ＆ドロップ</h2>
+                <img src="/img/blog/blender-to-touchdesigner-4.png" width="1400" height="auto">
+                <p lang="ja">
+                    次に、Blenderでエクスポートした.objデータをTouch Designerのネットワークエディターにドラッグ＆ドロップします。これで、Touch Designer内にBlenderのモデルが取り込まれます。
+                </p>
+
+                <h2>5. Null SOPを作成し、.objデータと接続</h2>
+                <img src="/img/blog/blender-to-touchdesigner-5.png" width="1400" height="auto">
+                <p lang="ja">
+                    .objデータの次に、Null SOPを作成し、それを.objデータに接続します。これは後々の操作をスムーズにするための処理で、一般的にSOP（Surface Operator）ネットワークで最後に置かれるノードです。
+                </p>
+
+                <h2>6. Null SOPのRenderフラグとDisplayフラグを有効にする</h2>
+                <img src="/img/blog/blender-to-touchdesigner-6.png" width="1400" height="auto">
+                <p lang="ja">
+                    Null SOPに青色のDisplayフラグと紫色のRenderフラグがあります。この2つを有効にすることで、モデルが表示され、レンダリング対象にもなります。フラグをオンにするには、ノードの横にある小さな青色（Display）と紫色（Render）の点をクリックしてください。
+                </p>
+
+                <h2>7. GeometryCOMPの階層に戻る</h2>
+                <img src="/img/blog/blender-to-touchdesigner-7.png" width="1400" height="auto">
+                <p lang="ja">
+                    最後に、ネットワークエディターのズームをアウトして1つ階層を上がると、GeometryCOMPが完成しているのを確認できます。このCOMPの中にBlenderからインポートした3Dモデルが含まれており、Touch Designer内で自由に操作・レンダリングできる状態になっています。
+                </p>
+
+                <h2>補足: Touch Designerで.obj形式を扱う利点</h2>
+                <p lang="ja">
+                    Touch Designerでは.obj形式を含む様々な3Dデータを扱うことができますが、特にBlenderなど外部ソフトウェアで作成した詳細なモデルを簡単にビジュアライズに取り込むことが可能です。さらに、Touch Designer内でのジオメトリ操作やエフェクトの適用も非常に柔軟です。
+                </p>
+
+            </div>
+        </main>
+    </div>
+
+    <div id="header-container"></div>
+	<script>
+		fetch('header.html')
+			.then(response => response.text())
+			.then(data => {
+				document.getElementById('header-container').innerHTML = data;
+			});
+	</script>
+
+	<div id="footer-placeholder"></div>
+	<script>
+		fetch('footer.html')
+			.then(response => response.text())
+			.then(html => {
+				document.getElementById('footer-placeholder').innerHTML = html;
+			});
+	</script>
+    
+</body>
+</html>
