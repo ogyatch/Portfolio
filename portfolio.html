@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ogyatch.com</title>
+	<link rel="stylesheet" href="css/styles.css">
+	<link rel="stylesheet" href="css/index.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script defer src="js/scripts.js"></script>
+</head>
+
+<body>
+    <div class="page-container">
+        <main>
+            <div class="content-area">
+                <h2>About</h2>
+                <p lang="en">
+                    I advocate for 'Defign' (Define & Design), an approach to defining and solving technical challenges
+                    through design, and I am passionate about implementing diverse technologies in society. With a
+                    unique perspective derived from a background in both art and engineering, I create UX, UI,
+                    interaction, and graphic designs. My projects include AI-powered communication tools, non-contact
+                    vital sensing healthcare services, web applications for IoT devices, and safety-focused in-vehicle
+                    navigation systems. Through these projects, I provide support for introducing practical and
+                    innovative solutions into everyday life. In each project's design, I aim to deliver the best user
+                    experience by developing interfaces that balance beauty with functionality.
+                </p>
+                <br>
+                <p lang="ja">
+                    技術課題をデザインで定義し解決する「Defign（Define & Design）」を掲げ、多様な技術を社会実装することに情熱を傾けています。芸術と工学のバックグラウンドを持つ独自の視点から、UX,
+                    UI, インタラクション,
+                    グラフィックなどを制作しています。私のプロジェクトには、AIを活用したコミュニケーションツール、非接触式バイタルセンシングを用いたヘルスケアサービス、IoTデバイス向けウェブアプリケーション、安全性を重視した車載ナビゲーションシステムなどが含まれます。これらのプロジェクトを通じて、日常生活に実用的で革新的なソリューションを提供するサポートを行っています。各プロジェクトのデザインでは、美しさと機能性を兼ね備えたインターフェースを構築し、ユーザーに最良の体験を届けることを目指しています。
+                </p>
+            </div>
+        </main>
+    </div>
+
+    <div id="header-container"></div>
+	<script>
+		fetch('header.html')
+			.then(response => response.text())
+			.then(data => {
+				document.getElementById('header-container').innerHTML = data;
+			});
+	</script>
+
+	<div id="footer-placeholder"></div>
+	<script>
+		fetch('footer.html')
+			.then(response => response.text())
+			.then(html => {
+				document.getElementById('footer-placeholder').innerHTML = html;
+			});
+	</script>
+
+</body>
+
+</html>

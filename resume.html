@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOMOHIROOGAWA</title>
+	<link rel="stylesheet" href="css/styles.css">
+	<link rel="stylesheet" href="css/index.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script defer src="js/scripts.js"></script>
+</head>
+
+<body>
+    <div class="page-container">
+        <main>
+            <div class="content-area">
+                <h2>RESUME</h2><br>
+                <p lang="en">2020.07-</p>
+                <p lang="ja">京セラ株式会社　研究開発本部　統合デザインセンター<br>UIUXデザイナー</p>
+                <p lang="ja">
+                    京セラの多様な技術を社会実装するために、デジタルプロダクトのUIUXデザインを担当しています。デザイン思考を用いた課題定義プロセスから、FigmaやXDを使ったプロトタイピング、AfterEffectsを使った動画制作、Blenderを使った3Dビジュアルデザイン、JavaScriptやPythonを使った簡易コーディング、さらにはTouch Designerを使ったリアルタイムインタラクションまで、案件に応じて柔軟に幅広く対応しています。
+                </p>
+                <br>
+                <p lang="en">2017.05-2020.06</p>
+                <p lang="ja">株式会社本田技術研究所　四輪R&Dセンター<br>UXデザイナー</p>
+                <p lang="ja">
+                    ホンダの車載ナビの使い勝手を向上するために、そのUXデザインを担当しました。市場調査からユーザーインタビュー、XDを使ったプロトタイピング、ユーザーテストの計画と実施、海外折衝まで、車載ナビのUXに関して幅広く責任を持ちながら、丁寧にデザインしました。また、Leap Motionを使った非接触で操作できる車載ナビや、ゲーミフィケーションUIを取り入れた車載ナビのプロトタイピングなど、新しいカタチの車載ナビも探求しました。
+                </p>
+                <br>
+                <p lang="en">2013.04-2018.04</p>
+                <p lang="ja">株式会社本田技術研究所　四輪R&Dセンター<br>UXデザイナー</p>
+                <p lang="ja">
+                    ホンダの車載ナビの使い勝手を向上するために、そのUXデザインを担当しました。市場調査からユーザーインタビュー、XDを使ったプロトタイピング、ユーザーテストの計画と実施、海外折衝まで、車載ナビのUXに関して幅広く責任を持ちながら、丁寧にデザインしました。また、Leap Motionを使った非接触で操作できる車載ナビや、ゲーミフィケーションUIを取り入れた車載ナビのプロトタイピングなど、新しいカタチの車載ナビも探求しました。
+                </p>
+                <br>
+                <p lang="en">2017.05-2020.06</p>
+                <p lang="ja">株式会社本田技術研究所　四輪R&Dセンター<br>UXデザイナー</p>
+                <p lang="ja">
+                    ホンダの車載ナビの使い勝手を向上するために、そのUXデザインを担当しました。市場調査からユーザーインタビュー、XDを使ったプロトタイピング、ユーザーテストの計画と実施、海外折衝まで、車載ナビのUXに関して幅広く責任を持ちながら、丁寧にデザインしました。また、Leap Motionを使った非接触で操作できる車載ナビや、ゲーミフィケーションUIを取り入れた車載ナビのプロトタイピングなど、新しいカタチの車載ナビも探求しました。
+                </p>
+                <br>
+            </div>
+        </main>
+    </div>
+
+    <div id="header-container"></div>
+	<script>
+		fetch('header.html')
+			.then(response => response.text())
+			.then(data => {
+				document.getElementById('header-container').innerHTML = data;
+			});
+	</script>
+
+	<div id="footer-placeholder"></div>
+	<script>
+		fetch('footer.html')
+			.then(response => response.text())
+			.then(html => {
+				document.getElementById('footer-placeholder').innerHTML = html;
+			});
+	</script>
+
+</body>
+
+</html>
