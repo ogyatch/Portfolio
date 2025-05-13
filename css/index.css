@@ -112,7 +112,7 @@ td {
 
 th {
     text-align: left;
-    font-weight: bold;
+    /* font-weight: bold; */
 }
 
 td {
