@@ -102,17 +102,17 @@
 }
 
 table {
-    width: 40%;
+    width: 50%;
 }
 
 th,
 td {
-    padding: 5px;
+    padding: 2px;
 }
 
 th {
     text-align: left;
-    /* font-weight: bold; */
+    font-weight: normal;
 }
 
 td {
