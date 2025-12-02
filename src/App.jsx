@@ -3,7 +3,8 @@ import { initializeApp } from 'firebase/app';
 import { getAnalytics } from "firebase/analytics";
 import { 
   getAuth, 
-  signInAnonymously, 
+  signInWithEmailAndPassword,
+  signOut,
   onAuthStateChanged
 } from 'firebase/auth';
 import { 
@@ -16,9 +17,10 @@ import {
   doc,
   deleteDoc
 } from 'firebase/firestore';
-import { Camera, Plus, X, ArrowLeft, Trash2, Save } from 'lucide-react';
+import { Camera, Plus, X, ArrowLeft, Trash2, Save, Lock, LogOut, Loader } from 'lucide-react';
 
 // --- Firebase Configuration ---
+// 既存の設定をそのまま使用
 const firebaseConfig = {
   apiKey: "AIzaSyDKz_8qTTVMyUclluzdwSHl6SY52tlLwNw",
   authDomain: "portfolio-14bec.firebaseapp.com",
@@ -29,17 +31,65 @@ const firebaseConfig = {
   measurementId: "G-2S2X4FJBHY"
 };
 
-// --- Initialization ---
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
 const db = getFirestore(app);
-const appId = "portfolio-site"; // データ保存用の識別ID
+const appId = "portfolio-site";
 
 // --- Components ---
 
+// ログインモーダル（管理者用）
+const LoginModal = ({ onClose }) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      onClose();
+    } catch (err) {
+      console.error(err);
+      setError("ログインに失敗しました。メールアドレスとパスワードを確認してください。");
+    }
+  };
+
+  return (
+    <div className="fixed inset-0 z-[60] bg-black/50 flex items-center justify-center p-4">
+      <div className="bg-white w-full max-w-sm p-8 shadow-2xl relative">
+        <button onClick={onClose} className="absolute top-4 right-4 p-2 hover:bg-gray-100 rounded-full">
+          <X className="w-5 h-5" />
+        </button>
+        <h2 className="text-lg font-serif mb-6 text-center tracking-widest">ADMIN ACCESS</h2>
+        <form onSubmit={handleLogin} className="space-y-4">
+          <input
+            type="email"
+            placeholder="Email"
+            className="w-full border-b border-gray-300 py-2 focus:outline-none focus:border-black font-sans"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            className="w-full border-b border-gray-300 py-2 focus:outline-none focus:border-black font-sans"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          {error && <p className="text-xs text-red-500">{error}</p>}
+          <button type="submit" className="w-full bg-black text-white py-3 hover:bg-gray-800 transition-colors text-xs tracking-widest">
+            LOGIN
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+};
+
 // 記事詳細モーダル
-const ReportDetail = ({ report, onClose, onDelete }) => {
+const ReportDetail = ({ report, onClose, onDelete, isAdmin }) => {
   if (!report) return null;
 
   return (
@@ -52,10 +102,11 @@ const ReportDetail = ({ report, onClose, onDelete }) => {
           <ArrowLeft className="w-6 h-6 text-gray-800" />
         </button>
         
-        {onDelete && (
+        {isAdmin && (
           <button 
             onClick={() => onDelete(report.id)}
             className="fixed top-6 right-6 md:top-10 md:right-10 p-2 hover:bg-red-50 text-gray-400 hover:text-red-600 rounded-full transition-colors"
+            title="記事を削除"
           >
             <Trash2 className="w-5 h-5" />
           </button>
@@ -171,7 +222,7 @@ const EditorModal = ({ onClose, onSubmit, isSubmitting }) => {
               disabled={isSubmitting}
               className="flex items-center gap-2 bg-black text-white px-8 py-3 hover:bg-gray-800 transition-colors disabled:opacity-50"
             >
-              <Save className="w-4 h-4" />
+              {isSubmitting ? <Loader className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
               <span>記録する</span>
             </button>
           </div>
@@ -187,19 +238,19 @@ export default function App() {
   const [reports, setReports] = useState([]);
   const [selectedReport, setSelectedReport] = useState(null);
   const [isEditorOpen, setIsEditorOpen] = useState(false);
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // 1. 匿名認証
+  // 1. 認証状態の監視
   useEffect(() => {
-    signInAnonymously(auth).catch((error) => console.error("Auth Error:", error));
-    return onAuthStateChanged(auth, (u) => setUser(u));
+    const unsubscribe = onAuthStateChanged(auth, (u) => {
+      setUser(u);
+    });
+    return () => unsubscribe();
   }, []);
 
-  // 2. データ取得（リアルタイム更新）
+  // 2. データ取得（誰でも閲覧可能）
   useEffect(() => {
-    if (!user) return;
-
-    // 'artifacts' > appId > 'public' > 'data' > 'experiment_reports'
     const q = query(
       collection(db, 'artifacts', appId, 'public', 'data', 'experiment_reports')
     );
@@ -207,7 +258,6 @@ export default function App() {
     const unsubscribe = onSnapshot(q, 
       (snapshot) => {
         const data = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-        // 新しい順にソート
         data.sort((a, b) => (b.date?.seconds || 0) - (a.date?.seconds || 0));
         setReports(data);
       },
@@ -215,9 +265,9 @@ export default function App() {
     );
 
     return () => unsubscribe();
-  }, [user]);
+  }, []);
 
-  // レポート追加処理
+  // レポート追加処理（管理者のみ）
   const handleAddReport = async ({ title, content, imageUrl, number }) => {
     if (!user) return;
     setIsSubmitting(true);
@@ -233,13 +283,13 @@ export default function App() {
       setIsEditorOpen(false);
     } catch (e) {
       console.error("Add Error: ", e);
-      alert("投稿に失敗しました。権限設定などを確認してください。");
+      alert("投稿に失敗しました。");
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  // レポート削除処理
+  // レポート削除処理（管理者のみ）
   const handleDeleteReport = async (id) => {
     if (!user || !confirm('このレポートを削除しますか？')) return;
     try {
@@ -247,6 +297,13 @@ export default function App() {
       setSelectedReport(null);
     } catch (e) {
       console.error("Delete Error: ", e);
+      alert("削除に失敗しました。権限を確認してください。");
+    }
+  };
+
+  const handleLogout = async () => {
+    if(confirm('ログアウトしますか？')) {
+      await signOut(auth);
     }
   };
 
@@ -264,13 +321,16 @@ export default function App() {
           </span>
         </div>
         
-        <button 
-          onClick={() => setIsEditorOpen(true)}
-          className="group flex items-center gap-2 px-4 py-2 text-xs tracking-widest hover:bg-gray-100 transition-all rounded-sm"
-        >
-          <Plus className="w-4 h-4 text-gray-400 group-hover:text-black transition-colors" />
-          <span className="hidden md:inline text-gray-400 group-hover:text-black transition-colors">NEW REPORT</span>
-        </button>
+        {/* 管理者のみ「NEW REPORT」ボタンを表示 */}
+        {user && (
+          <button 
+            onClick={() => setIsEditorOpen(true)}
+            className="group flex items-center gap-2 px-4 py-2 text-xs tracking-widest hover:bg-gray-100 transition-all rounded-sm"
+          >
+            <Plus className="w-4 h-4 text-gray-400 group-hover:text-black transition-colors" />
+            <span className="hidden md:inline text-gray-400 group-hover:text-black transition-colors">NEW REPORT</span>
+          </button>
+        )}
       </header>
 
       {/* Main Content */}
@@ -288,7 +348,6 @@ export default function App() {
                 onClick={() => setSelectedReport(report)}
                 className="group cursor-pointer flex flex-col gap-4 animate-fade-in-up"
               >
-                {/* Image */}
                 <div className="relative aspect-[4/3] overflow-hidden bg-gray-100 w-full">
                   {report.imageUrl ? (
                     <img 
@@ -304,7 +363,6 @@ export default function App() {
                   <div className="absolute top-0 left-0 w-full h-full bg-black/0 group-hover:bg-black/5 transition-colors duration-500" />
                 </div>
 
-                {/* Text */}
                 <div className="flex flex-col items-start gap-2 pr-4">
                   <div className="flex items-baseline gap-3 w-full border-t border-gray-200 pt-4">
                     <span className="text-[10px] font-bold text-gray-400 tracking-widest">
@@ -329,11 +387,22 @@ export default function App() {
         )}
       </main>
 
-      {/* Footer */}
-      <footer className="py-12 text-center border-t border-gray-100 mt-auto">
+      {/* Footer & Admin Controls */}
+      <footer className="py-12 text-center border-t border-gray-100 mt-auto flex flex-col items-center gap-4">
         <p className="text-[10px] tracking-[0.2em] text-gray-300">
           © {new Date().getFullYear()} ARCHIVE. ALL RIGHTS RESERVED.
         </p>
+        
+        {/* 管理者ログイン/ログアウトボタン */}
+        {user ? (
+          <button onClick={handleLogout} className="text-gray-300 hover:text-black transition-colors" title="Logout">
+            <LogOut className="w-4 h-4" />
+          </button>
+        ) : (
+          <button onClick={() => setIsLoginOpen(true)} className="text-gray-200 hover:text-gray-400 transition-colors" title="Admin Login">
+            <Lock className="w-4 h-4" />
+          </button>
+        )}
       </footer>
 
       {/* Modals */}
@@ -342,6 +411,7 @@ export default function App() {
           report={selectedReport} 
           onClose={() => setSelectedReport(null)} 
           onDelete={handleDeleteReport}
+          isAdmin={!!user} // ログイン中のみ削除可能
         />
       )}
 
@@ -351,6 +421,10 @@ export default function App() {
           onSubmit={handleAddReport}
           isSubmitting={isSubmitting}
         />
+      )}
+
+      {isLoginOpen && (
+        <LoginModal onClose={() => setIsLoginOpen(false)} />
       )}
       
       <style>{`
