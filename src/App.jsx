@@ -145,15 +145,14 @@ const ReportDetail = ({ report, onClose, onDelete, isAdmin }) => {
 };
 
 // 投稿用モーダル
-const EditorModal = ({ onClose, onSubmit, isSubmitting }) => {
+const EditorModal = ({ onClose, onSubmit, isSubmitting, nextNumber }) => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [imageUrl, setImageUrl] = useState('');
-  const [number, setNumber] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit({ title, content, imageUrl, number });
+    onSubmit({ title, content, imageUrl });
   };
 
   return (
@@ -169,29 +168,23 @@ const EditorModal = ({ onClose, onSubmit, isSubmitting }) => {
         <h2 className="text-xl font-serif mb-8 text-center tracking-widest">新規レポート作成</h2>
         
         <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="grid grid-cols-4 gap-4">
-             <div className="col-span-1">
-              <label className="block text-xs text-gray-500 mb-1">No.</label>
-              <input
-                type="text"
-                value={number}
-                onChange={(e) => setNumber(e.target.value)}
-                className="w-full border-b border-gray-300 py-2 focus:outline-none focus:border-black font-serif transition-colors"
-                placeholder="001"
-                required
-              />
+          <div>
+            <label className="block text-xs text-gray-500 mb-1">No.</label>
+            <div className="w-full py-2 font-serif text-gray-500">
+              {nextNumber || '---'}
             </div>
-            <div className="col-span-3">
-              <label className="block text-xs text-gray-500 mb-1">TITLE</label>
-              <input
-                type="text"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                className="w-full border-b border-gray-300 py-2 focus:outline-none focus:border-black font-serif text-lg transition-colors"
-                placeholder="タイトルを入力"
-                required
-              />
-            </div>
+          </div>
+
+          <div>
+            <label className="block text-xs text-gray-500 mb-1">TITLE</label>
+            <input
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              className="w-full border-b border-gray-300 py-2 focus:outline-none focus:border-black font-serif text-lg transition-colors"
+              placeholder="タイトルを入力"
+              required
+            />
           </div>
 
           <div>
@@ -240,6 +233,7 @@ export default function App() {
   const [isEditorOpen, setIsEditorOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const nextNumber = String(reports.length + 1).padStart(3, '0');
 
   // 1. 認証状態の監視
   useEffect(() => {
@@ -268,15 +262,16 @@ export default function App() {
   }, []);
 
   // レポート追加処理（管理者のみ）
-  const handleAddReport = async ({ title, content, imageUrl, number }) => {
+  const handleAddReport = async ({ title, content, imageUrl }) => {
     if (!user) return;
+    const nextNumber = String(reports.length + 1).padStart(3, '0');
     setIsSubmitting(true);
     try {
       await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'experiment_reports'), {
         title,
         content,
         imageUrl,
-        number,
+        number: nextNumber,
         date: Timestamp.now(),
         authorId: user.uid
       });
@@ -420,6 +415,7 @@ export default function App() {
           onClose={() => setIsEditorOpen(false)} 
           onSubmit={handleAddReport}
           isSubmitting={isSubmitting}
+          nextNumber={nextNumber}
         />
       )}
 
